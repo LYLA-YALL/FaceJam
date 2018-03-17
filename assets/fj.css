@@ -1,0 +1,21 @@
+body {
+	background-image: url("images/ocean.jpg");
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.navbar {
+	background-color: #fff;
+	opacity: .9;
+}
+
+.search-and-upload, .results {
+	background-color: #fff;
+	opacity: .9;
+	margin: 35px 10px 10px 10px;
+}
+
+.container {
+	margin-top: 200px;
+}
