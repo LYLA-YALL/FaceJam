@@ -18,4 +18,21 @@ body {
 
 .container {
 	margin-top: 200px;
+	align-items: center;
+	align-content: center;
+}
+
+/*
+.carousel-caption {
+	width: 100%;
+	background-color: grey;
+	opacity: .7;
+} */
+
+.caption {
+	width: 100%;
+	background-color: grey;
+	opacity: .7; 
+	padding: 0 50px 10px 50px;
+	margin: 0 -50px -40px 100px;
 }
