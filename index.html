@@ -22,9 +22,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#about">About this Project</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#contact">Contact</a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contributors</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -84,8 +81,10 @@
                 <div class="col-lg-6 search-and-upload">
                     <form>
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">How are you feeling today?</label>
+                            <label for="photo-upload">How are you feeling today?</label>
                             <input type="file" class="form-control-file" id="photo-submit">
+                            <button type="button" class="btn btn-secondary">Upload
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -99,7 +98,40 @@
                     <div id="on-photo-upload-correct">
                         <h2>Success!</h2>
                         <p>Check out the music we found for you!
-                            <br> (this will be hidden until photo is uploaded, then will tell user whether photo was correctly interpreted)</p>
+                            <br> Was this correct? How do you really feel?</p>
+                        <div class="dropdown show">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown link</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">Happy</a>
+                                <a class="dropdown-item" href="#">Neutral</a>
+                                <a class="dropdown-item" href="#">Sad</a>
+                                <a class="dropdown-item" href="#">Angry</a>
+                                <a class="dropdown-item" href="#">Surprised</a>
+                                <a class="dropdown-item" href="#">Afraid</a>
+                                <a class="dropdown-item" href="#">Disgusted</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#pick-my-own">Pick my own!</a>
+                            </div>
+                            <div class="modal fade" id="pick-my-own" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="choose">Choose Your Own</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nevermind!</button>
+                                            <button type="button" class="btn btn-primary">That's more like it!</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br> (this will be hidden until photo is uploaded, then will tell user whether photo was correctly interpreted)</p>
                     </div>
                     <div id="on-photo-upload-error">
                         <h2>Uh oh...</h2>
@@ -128,10 +160,10 @@
             </div>
         </div>
     </div>
-    <footer>
-        <h4>About FaceJam</h4>
+    <nav class="navbar bottom navbar-light bg-light" id="about">
+        <h4>About FaceJam:</h4>
         <p>FaceJam uses the Face++ and Spotify APIs to create the rich experience of listening to your mood, as interpreted by a robot!</p>
-    </footer>
+    </nav>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

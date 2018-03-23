@@ -31,8 +31,8 @@ body {
 	margin: 0 -50px -40px 100px;
 }
 
-footer {
-	width: 100%;
+#about {
+	color: #787C81;
 	background-color: #fff;
 	opacity: .9;
 	margin: 50px 0px 0px 0px;
