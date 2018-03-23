@@ -96,8 +96,15 @@
                 <div class="col-lg-3">
                 </div>
                 <div class="col-lg-6 search-and-upload">
-                    <div class="on-photo-upload">
-                        <p>(this will be hidden until photo is uploaded, then will tell user whether photo was correctly interpreted)</p>
+                    <div id="on-photo-upload-correct">
+                        <h2>Success!</h2>
+                        <p>Check out the music we found for you!
+                            <br> (this will be hidden until photo is uploaded, then will tell user whether photo was correctly interpreted)</p>
+                    </div>
+                    <div id="on-photo-upload-error">
+                        <h2>Uh oh...</h2>
+                        <p>Something went wrong. Make sure the photo you've used clearly depicts a human face, is no more than 2 mb, is formatted in either .jpg or .png, and each side is between 48 and 4096 pixels.
+                            <br> (this will be hidden until photo is uploaded, then will tell user whether photo was correctly interpreted)</p>
                     </div>
                 </div>
                 <div class="col-lg-3">
@@ -121,6 +128,10 @@
             </div>
         </div>
     </div>
+    <footer>
+        <h4>About FaceJam</h4>
+        <p>FaceJam uses the Face++ and Spotify APIs to create the rich experience of listening to your mood, as interpreted by a robot!</p>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
