@@ -30,9 +30,11 @@
  *    1b. happiness >=66%
  *    1c. fear >= 66%
  *    1d. (disgust >= 50%) and ((fear + anger + surprise) >= 50%)
+ * 
  *    2. slow tempo < 120
- *    2a. sad >= 66%
+ *    2a. sadness >= 66%
  *    2b. (sadness <= 50%) + (neutral <= 50%)
+ * 
  *    3. mid  tempo 120 <= tempo <= 170
  *    3a. neutral >= 50%
  * 
@@ -51,7 +53,7 @@
  * 
  * Danceability probably won't factor much into this due to it mainly being for how usable a track is for dancing
  *    - determined by combination of tempo, rythem stability, beat strength, overall regularity among others not named on a 0.0 - 1.0 scale
- *    - 
+ *    - only used if (energy >= 67%) + (valence >= 67%)
  * 
  * 
  * 
