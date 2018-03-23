@@ -56,6 +56,6 @@
  *    - only used if (energy >= 67%) + (valence >= 67%)
  * 
  * 
- * 
+ * curl -X "GET" "https://api.spotify.com/v1/recommendations?limit=10&market=US&seed_genres=classical%2Ccountry%2Cmetal%2Crock&min_acousticness=0.7&max_acousticness=1.0&target_acousticness=1.0&min_danceability=0.1&max_danceability=0.8&target_danceability=0.5&min_duration_ms=3000&max_duration_ms=30000&target_duration_ms=24000&min_energy=0.5&max_energy=0.7&target_energy=1.0&min_instrumentalness=0.0&max_instrumentalness=1.0&target_instrumentalness=0.5&min_key=0&max_key=2&target_key=1&min_liveness=0.3&max_liveness=1.0&target_liveness=0.8&min_loudness=-60&max_loudness=0&target_loudness=-30&min_mode=0&max_mode=1&target_mode=1&min_popularity=50&max_popularity=100&target_popularity=75&min_speechiness=0.0&max_speechiness=0.5&target_speechiness=0.3&min_tempo=150&max_tempo=180&target_tempo=160&min_time_signature=3&max_time_signature=4&target_time_signature=4&min_valence=0.5&max_valence=1.0&target_valence=0.7" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer <authorization>"
  * 
  */
