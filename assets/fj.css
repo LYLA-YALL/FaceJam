@@ -10,9 +10,10 @@ body {
 	opacity: .9;
 }
 
-.search-and-upload, .results {
+#on-photo-upload-correct, #on-photo-upload-error, .results, .form-group {
 	background-color: #fff;
 	opacity: .9;
+	padding: 10px;
 	margin: 35px 10px 10px 10px;
 }
 
@@ -22,13 +23,6 @@ body {
 	align-content: center;
 }
 
-/*
-.carousel-caption {
-	width: 100%;
-	background-color: grey;
-	opacity: .7;
-} */
-
 .caption {
 	width: 100%;
 	background-color: grey;
@@ -36,3 +30,11 @@ body {
 	padding: 0 50px 10px 50px;
 	margin: 0 -50px -40px 100px;
 }
+
+#about {
+	color: #787C81;
+	background-color: #fff;
+	opacity: .9;
+	margin: 50px 0px 0px 0px;
+}
+
