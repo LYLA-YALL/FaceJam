@@ -35,6 +35,14 @@ body {
 	color: #787C81;
 	background-color: #fff;
 	opacity: .9;
-	margin: 50px 0px 0px 0px;
+	margin: 50px 0px -15px 0px;
+	text-align: center;
 }
 
+h4 {
+	padding: 20px;
+}
+
+.foot {
+	padding: 10px;
+}
