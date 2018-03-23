@@ -20,14 +20,21 @@
  *    - value typical range according to spotify is between -60 and 0
  * 
  * Tempo is the speed of the music in Beats Per Minute (BPM)
- *    - a fast tempo could equate to high surprise or happiness or other high-non sad/depressed level of emption
+ *    - a fast tempo could equate to high surprise or happiness or other high-non sad/depressed/neutral level of emption
  *    - a fast tempo could also equate to high fear - like when your pulse quickens when you are scared just like when you are excited
  *    - a fast tempo could equate to a high level of disgust mixed with fear/anger/surprise
  * 
  * to get the value for Tempo:
  *    1. fast tempo > 170
+ *    1a. surprise >= 66%
+ *    1b. happiness >=66%
+ *    1c. fear >= 66%
+ *    1d. (disgust >= 50%) and ((fear + anger + surprise) >= 50%)
  *    2. slow tempo < 120
+ *    2a. sad >= 66%
+ *    2b. (sadness <= 50%) + (neutral <= 50%)
  *    3. mid  tempo 120 <= tempo <= 170
+ *    3a. neutral >= 50%
  * 
  * Energy represents perceptual measure of intensity and activity
  *    - a low energy would equate to sadness, neutral emotion
