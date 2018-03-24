@@ -1,3 +1,19 @@
+// DOM things
+//$("#on-photo-upload-correct").hide();
+$("#on-photo-upload-error").hide();
+$(".results").hide();
+
+// Initialize Firebase
+var config = {
+apiKey: "AIzaSyAwSQJpM8wQUVAYLmThPdPVeDFbNVkazvI",
+authDomain: "facejam-1f0e6.firebaseapp.com",
+databaseURL: "https://facejam-1f0e6.firebaseio.com",
+projectId: "facejam-1f0e6",
+storageBucket: "",
+messagingSenderId: "174049412327"
+};
+firebase.initializeApp(config);
+
 
 var apiKey = "api_key=laayC4Q2zbJVehmHJQaShRBlXte6GOHY&";
 var apiSecret = "api_secret=dAJDmzmDj5f_lj93y_AoEqhgtT0WGPLI&";
@@ -170,6 +186,61 @@ else if ((anger > 0.67) || (happiness > 0.67) || (surprise > 0.67)) {
 
     energy = energy - ((sadness + neutral) / 2);
 }
+
+
+
+// variables for grabbing data from modal
+
+// dropdown items
+// dropdown happiness
+$("#happiness").on("click", function() {
+happiness = .9;
+console.log(happiness);
+});
+
+// dropdown neutral
+$("#neutral").on("click", function() {
+neutral = .9;
+console.log(neutral);
+});
+
+// dropdown sad
+$("#sadness").on("click", function() {
+sadness = .9;
+console.log(sadness);
+});
+
+// dropdown angry
+$("#anger").on("click", function() {
+anger = .9;
+console.log(anger);
+});
+
+// dropdown surprised
+$("#surprise").on("click", function() {
+surprise = .9;
+console.log(surprise);
+});
+
+// dropdown afraid
+$("#fear").on("click", function() {
+fear = .9;
+console.log(fear);
+});
+
+// dropdown disgusted
+$("#disgust").on("click", function() {
+disgust = .9;
+console.log(disgust);
+});
+
+
+
+
+
+
+
+
 
 // variables for holding the results
 var tracks = []; // array for the track objects

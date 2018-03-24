@@ -115,14 +115,13 @@
                         <div class="dropup show">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="mood-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">How do you really feel?</a>
                             <div class="dropdown-menu" aria-labelledby="mood-dropdown">
-                                <a class="dropdown-item" href="#">Happy</a>
-                                <a class="dropdown-item" href="#">Neutral</a>
-                                <a class="dropdown-item" href="#">Sad</a>
-                                <a class="dropdown-item" href="#">Angry</a>
-                                <a class="dropdown-item" href="#">Surprised</a>
-                                <a class="dropdown-item" href="#">Afraid</a>
-                                <a class="dropdown-item" href="#">Disgusted</a>
-                                <a class="dropdown-item" data-toggle="modal" data-target="#pick-my-own">Pick my own!</a>
+                                <p class="dropdown-item call-spotify" id="happiness">Happy</p>
+                                <p class="dropdown-item call-spotify" id="neutral">Neutral</p>
+                                <p class="dropdown-item call-spotify" id="sadness">Sad</p>
+                                <p class="dropdown-item call-spotify" id="anger">Angry</p>
+                                <p class="dropdown-item call-spotify" id="surprise">Surprised</p>
+                                <p class="dropdown-item call-spotify" id="fear">Afraid</a>
+                                <p class="dropdown-item call-spotify" id="disgust" href="#">Disgusted</p>
                             </div>
                         </div>
                         <br> (this will be hidden until photo is uploaded, then will tell user whether photo was correctly interpreted)</p>
@@ -155,152 +154,12 @@
         </div>
     </div>
     <div class="modal fade" id="pick-my-own" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="choose">Choose Your Own</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-check happiness">
-                        Happiness
-                        <br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="happiness" id="happiness0" value="option1">
-                            <label class="form-check-label" for="happiness0">0</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="happiness" id="happiness1" value="option2">
-                            <label class="form-check-label" for="happiness1">1</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="happiness" id="happiness2" value="option1">
-                            <label class="form-check-label" for="happiness2">2</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="happiness" id="happiness3" value="option2">
-                            <label class="form-check-label" for="happiness3">3</label>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-check surprise">
-                            Surprise
-                        <br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="surprise" id="surprise0" value="option1">
-                            <label class="form-check-label" for="surprise0">0</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="surprise" id="surprise1" value="option2">
-                            <label class="form-check-label" for="surprise1">1</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="surprise" id="surprise2" value="option1">
-                            <label class="form-check-label" for="surprise2">2</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="surprise" id="surprise3" value="option2">
-                            <label class="form-check-label" for="surprise3">3</label>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-check anger">
-                            Anger
-                        <br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="anger" id="anger0" value="option1">
-                            <label class="form-check-label" for="anger0">0</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="anger" id="anger1" value="option2">
-                            <label class="form-check-label" for="anger1">1</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="anger" id="anger2" value="option1">
-                            <label class="form-check-label" for="anger2">2</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="anger" id="anger3" value="option2">
-                            <label class="form-check-label" for="anger3">3</label>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-check disgust">
-                            Disgust
-                        <br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="disgust" id="disgust0" value="option1">
-                            <label class="form-check-label" for="disgust0">0</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="disgust" id="disgust1" value="option2">
-                            <label class="form-check-label" for="disgust1">1</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="disgust" id="disgust2" value="option1">
-                            <label class="form-check-label" for="disgust2">2</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="disgust" id="disgust3" value="option2">
-                            <label class="form-check-label" for="disgust3">3</label>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-check fear">
-                            Fear
-                        <br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="fear" id="fear0" value="option1">
-                            <label class="form-check-label" for="fear0">0</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="fear" id="fear1" value="option2">
-                            <label class="form-check-label" for="fear1">1</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="fear" id="fear2" value="option1">
-                            <label class="form-check-label" for="fear2">2</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="fear" id="fear3" value="option2">
-                            <label class="form-check-label" for="fear3">3</label>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-check sadness" role="">
-                            Sadness
-                        <br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="sadness" id="sadness0" value="option1">
-                            <label class="form-check-label" for="sadness0">0</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="sadness" id="sadness1" value="option2">
-                            <label class="form-check-label" for="sadness1">1</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="sadness" id="sadness2" value="option1">
-                            <label class="form-check-label" for="sadness2">2</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="sadness" id="sadness3" value="option2">
-                            <label class="form-check-label" for="sadness3">3</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Nevermind!</button>
-                    <button type="button" class="btn btn-primary">That's more like it!</button>
-                </div>
-            </div>
-        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     <script src="assets/fj.js"></script>
 </body>
 
