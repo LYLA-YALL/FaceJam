@@ -31,18 +31,13 @@ body {
 	margin: 0 -50px -40px 100px;
 }
 
-#about {
-	color: #787C81;
-	background-color: #fff;
-	opacity: .9;
-	margin: 50px 0px -15px 0px;
-	text-align: center;
-}
+
 
 h4 {
-	padding: 20px;
+	padding: 5px;
 }
 
-.foot {
-	padding: 10px;
+.about {
+	padding: 15px;
+	font-size: 90%;
 }
