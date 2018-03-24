@@ -3,6 +3,7 @@ body {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-size: cover;
+	
 }
 
 .navbar {
@@ -15,12 +16,14 @@ body {
 	opacity: .9;
 	padding: 10px;
 	margin: 35px 10px 10px 10px;
+	overflow: visible !important;
 }
 
 .container {
 	margin-top: 200px;
 	align-items: center;
 	align-content: center;
+	overflow: visible;
 }
 
 .caption {
@@ -31,10 +34,17 @@ body {
 	margin: 0 -50px -40px 100px;
 }
 
-#about {
-	color: #787C81;
-	background-color: #fff;
-	opacity: .9;
-	margin: 50px 0px 0px 0px;
+.dropdown-menu, .dropdown-toggle{
+	height: auto !important;
+	overflow-x: visible !important;
+	z-index:1000;
 }
 
+h4 {
+	padding: 5px;
+}
+
+.about {
+	padding: 15px;
+	font-size: 90%;
+}
