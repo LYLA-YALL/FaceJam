@@ -80,6 +80,7 @@ $(".form-control-file").on("change", function () {
     });
 });
 
+// start spotify api
 var urlBegin = "https://api.spotify.com/v1/recommendations?";
 var limit = "limit=20";
 var market = "market=US";
@@ -325,5 +326,5 @@ tracks.forEach(element => {
     $(newTdSong).text(tracks[element].track);
     $(newTr).append(newTdArtist),$(newTr).append(newTdArtist);
     $("table").append(newTr);
-})
+});
 
