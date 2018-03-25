@@ -259,7 +259,7 @@ database.ref("/No").on("value", function(snapshot) {
 $("#accurate-yes").on("click", function() {
     yes++;
     $(".accuracy").hide();
-    $("#thanks").text("Thanks!");
+    $("#thanks").text("Thanks for your feedback!");
     database.ref("Yes").set({
         yesCount: yes
     });
@@ -270,7 +270,7 @@ $("#accurate-yes").on("click", function() {
 $("#accurate-no").on("click", function() {
     no++;
     $(".accuracy").hide();
-    $("#thanks").text("Thanks!");
+    $("#thanks").text("Thanks for your feedback!");
     database.ref("No").set({
         noCount: no
     });
