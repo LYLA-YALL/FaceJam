@@ -1,60 +1,88 @@
 body {
-	background-image: url("images/ocean.jpg");
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-size: cover;
-	
+    background-image: url("images/ocean.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .navbar {
-	background-color: #fff;
-	opacity: .9;
+    background-color: #fff;
+    opacity: .9;
 }
 
-#on-photo-upload-correct, #on-photo-upload-error, .results, .form-group {
-	background-color: #fff;
-	opacity: .9;
-	padding: 10px;
-	margin: 35px 10px 10px 10px;
-	overflow: visible !important;
-	align-content: center;
+#on-photo-upload-correct,
+#on-photo-upload-error,
+.results,
+.form-group {
+    background-color: #fff;
+    opacity: .9;
+    padding: 10px;
+    margin: 35px 10px 10px 10px;
+    overflow: visible !important;
+    align-content: center;
 }
 
 .container {
-	margin-top: 200px;
-	align-items: center;
-	align-content: center;
-	overflow: visible;
+    margin-top: 200px;
+    align-items: center;
+    align-content: center;
+    overflow: visible;
 }
 
 .caption {
-	width: 100%;
-	background-color: grey;
-	opacity: .7; 
-	padding: 0 50px 10px 50px;
-	margin: 0 -50px -40px 100px;
+    width: 100%;
+    background-color: grey;
+    opacity: .7;
+    padding: 0 10% 10% 20%;
+    margin: 5% -30% -20% 20%;
 }
 
-#accurate-yes, #accurate-no {
-	margin: 0 0 20px 0;
+#accurate-yes,
+#accurate-no {
+    margin: 0 0 20px 0;
 }
 
 #thanks {
-	color: #326f6f;
-	font-weight: bold;
+    color: #326f6f;
+    font-weight: bold;
 }
 
-.dropdown-menu, .dropdown-toggle{
-	height: auto !important;
-	overflow-x: visible !important;
-	z-index:1000;
+.dropdown-menu,
+.dropdown-toggle {
+    height: auto !important;
+    overflow-x: visible !important;
+    z-index: 1000;
 }
 
 h4 {
-	padding: 5px;
+    padding: 5px;
 }
 
 .about {
-	padding: 15px;
-	font-size: 90%;
+    padding: 15px;
+    font-size: 90%;
+}
+
+
+/* Media queries for screens less than 992px */
+
+@media screen and (max-width: 992px) {
+    .caption {
+        width: 100%;
+        background-color: grey;
+        opacity: .7;
+        padding: 0 10% 10% 20%;
+    	margin: 2% -15% -30% 20%;
+    }
+}
+
+@media screen and (max-width: 509px) {
+    .caption {
+    	font-size: 70%;
+        width: 100%;
+        background-color: grey;
+        opacity: .7;
+        padding: 0 10% 10% 20%;
+    	margin: 8% -5% -28% 20%;
+    }
 }
