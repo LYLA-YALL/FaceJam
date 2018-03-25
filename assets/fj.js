@@ -109,22 +109,13 @@ var minValence = "min_valence=0.0";
 var maxValence = "max_valence=1.0";
 var targetValence = "target_valence="
 
+var anger = 0, disgust = 0, fear = 0, happiness = 0, neutral = 0, sadness = 0, surprise = 0;
 //secondary values
 var seedGenre, seedArtist, seedAlbum, minAcoustic = "min_acousticness=0", maxAcoustic = "max_acousticness=1.0", minDuration, maxDuration, targetDuration, minInstrumental, maxInstrumental, targetInstrumental, maxKey, minKey, targetKey, minLive, maxLive, targetLive, minMode, maxMode, targetMode, minTime, maxTime, targetTime;
 
 // dynamic emotion based values
 var dance, energy, loudness, tempo, valence;
 
-var queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
-
-// danceability values
-if ((energy >= 0.67) && (valence >= 0.67)) {
-    var queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
-}
-
-else {
-    var queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + /* minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + */ minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
-}
 // tempo values
 // fast tempo values
 if ((surprise >= 0.67) || (happiness >= 0.67) || (fear >= 0.67) || ((disgust >= 0.50) && ((fear + anger + surprise) <= 0.5))) {
@@ -170,6 +161,17 @@ else if ((anger > 0.67) || (happiness > 0.67) || (surprise > 0.67)) {
     }
 
     energy = energy - ((sadness + neutral) / 2);
+}
+
+var queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
+
+// danceability values
+if ((energy >= 0.67) && (valence >= 0.67)) {
+    queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
+}
+
+else {
+    queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + /* minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + */ minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
 }
 
 // variables for holding the results
@@ -272,59 +274,199 @@ var trackResult = {
     // "genre": ""
 }
 
-$.ajax({
-    url: queryUrl,
-    method: 'GET',
-    accept: 'application/json',
-    "content-type": 'application/json'
-}).then(function(result){
-    var x = 0;
-    result.tracks.forEach(element => {
-        // if (result.tracks[element].album.artists[].length > 1) {
-            result.tracks[element].album.artists.forEach(element => {
-                /*trackResult.artist = */ trackResult.artist.push(result.tracks[element].album.artists[element].name);
-            });
-        // }
-        // trackResult.artist = result.tracks[x].album.artists[0].name;
-        result.tracks[element].artists.forEach(element => {
-            var y = 0;
-            y = trackResult.track.length;
-            if ((y > 0) && (result.tracks[element].artists[element].name !== trackResult.track[y - 1])) {
-                trackResult.track.push(result.tracks[element].artists[element].name);
-            }
+// $.ajax({
+//     url: queryUrl,
+//     method: 'GET',
+//     accept: 'application/json',
+//     "content-type": 'application/json'
+// }).then(function(result){
+//     var x = 0;
+//     result.tracks.forEach(element => {
+//         // if (result.tracks[element].album.artists[].length > 1) {
+//             result.tracks[element].album.artists.forEach(element => {
+//                 /*trackResult.artist = */ trackResult.artist.push(result.tracks[element].album.artists[element].name);
+//             });
+//         // }
+//         // trackResult.artist = result.tracks[x].album.artists[0].name;
+//         result.tracks[element].artists.forEach(element => {
+//             var y = 0;
+//             y = trackResult.track.length;
+//             if ((y > 0) && (result.tracks[element].artists[element].name !== trackResult.track[y - 1])) {
+//                 trackResult.track.push(result.tracks[element].artists[element].name);
+//             }
 
-            else {
-                trackResult.track.push(result.tracks[element].artists[element].name);
-            }
+//             else {
+//                 trackResult.track.push(result.tracks[element].artists[element].name);
+//             }
 
-            y = trackResult.artistLink.length;
-            if ((y > 0) && (result.tracks[element].artists[element].external_urls.spotify !== trackResult.artistLink[y - 1])) {
-                trackResul.artistLink.push(result.tracks[element].artists[element].external_urls.spotify);
-            }
+//             y = trackResult.artistLink.length;
+//             if ((y > 0) && (result.tracks[element].artists[element].external_urls.spotify !== trackResult.artistLink[y - 1])) {
+//                 trackResul.artistLink.push(result.tracks[element].artists[element].external_urls.spotify);
+//             }
 
-            else {
-                trackResul.artistLink.push(result.tracks[element].artists[element].external_urls.spotify);
-            }
+//             else {
+//                 trackResul.artistLink.push(result.tracks[element].artists[element].external_urls.spotify);
+//             }
+//         });
+//         trackResult.album = result.tracks[element].album.name;
+//         trackResult.trackLink = result.tracks[element].external_urls.spotify;
+//         trackResult.albumLink = result.tracks[element].album.external_urls.spotify;
+
+//         tracks.push(trackResult);
+//     });
+// });
+
+// tracks.forEach(element => {
+//     var newTdArtist = $("<td>").attr("class", "artistName").attr("id", ("artistNumber" + element));
+//     var newTr = $("<tr>");
+//     var newTdSong = $("<td>").attr("class", "songName").attr("id", ("songNumber" + element));
+//     var artistsNames = "";
+//     // tracks[element].artist.forEach(element => {
+//     //     if (element = )
+//     // })
+//     $(newTdArtist).text(tracks[element].artist.val().toString());
+//     $(newTdSong).text(tracks[element].track);
+//     $(newTr).append(newTdArtist),$(newTr).append(newTdArtist);
+//     $("table").append(newTr);
+// });
+
+$(document).ready(function() {
+    alert("Please enter a value between 0-100 for each of the following prompts");
+    anger = prompt("Please enter the value for anger: ");
+    console.log("the value of anger: " + anger);
+    disgust = prompt("Please enter the value for disgust: ");
+    console.log("the value of disgust: " + disgust);
+    fear = prompt("Please enter the value for fear: ");
+    console.log("the value of fear: " + fear);
+    happiness = prompt("Please enter the value for happiness: ");
+    console.log("the value of happiness: " + happiness);
+    neutral = prompt("Please enter the value for neutral: ");
+    console.log("the value of neutral: " + neutral);
+    sadness = prompt("Please enter the value for sadness: ");
+    console.log("the value of sadness: " + sadness);
+    surprise = prompt("Please enter the value for surprise: ");
+    console.log("the value of surprise: " + surprise);
+
+
+    // curl -X "POST" -H "Authorization: Basic BQBKwJ4Xs80bXf9yO838A1ynmp7pg4qslJjakdxUJjcHjT0CK_ETpnpQCeX37FDbekMlqHbkrpRu2bFwZMTUB8aavgsRJ7z5sTf3oquS4fd_AiXPm0jHTIuBgJZvuH6kys_2zL9uZRazfcjwQ524VPVqHHIbUmM" -d grant_type=client_credentials https://accounts.spotify.com/api/token
+
+    var apiAccess = {
+        accessToken: "",
+        tokenType: "",
+        expiresIn: 0
+    };
+
+    //from spotifies web-api-auth-examples github
+    var request = require('request'); // "Request" library
+
+    var client_id = 'CLIENT_ID'; // Your client id
+    var client_secret = 'CLIENT_SECRET'; // Your secret
+    
+    // your application requests authorization
+    var authOptions = {
+      url: 'https://accounts.spotify.com/api/token',
+      headers: {
+        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+      },
+      form: {
+        grant_type: 'client_credentials'
+      },
+      json: true
+    };
+    
+    request.post(authOptions, function(error, response, body) {
+      if (!error && response.statusCode === 200) {
+    
+        // use the access token to access the Spotify Web API
+        var token = body.access_token;
+        var options = {
+          url: 'https://api.spotify.com/v1/users/jmperezperez',
+          headers: {
+            'Authorization': 'Bearer ' + token
+          },
+          json: true
+        };
+        request.get(options, function(error, response, body) {
+          console.log(body);
         });
-        trackResult.album = result.tracks[element].album.name;
-        trackResult.trackLink = result.tracks[element].external_urls.spotify;
-        trackResult.albumLink = result.tracks[element].album.external_urls.spotify;
-
-        tracks.push(trackResult);
+      }
     });
-});
+    
 
-tracks.forEach(element => {
-    var newTdArtist = $("<td>").attr("class", "artistName").attr("id", ("artistNumber" + element));
-    var newTr = $("<tr>");
-    var newTdSong = $("<td>").attr("class", "songName").attr("id", ("songNumber" + element));
-    var artistsNames = "";
-    // tracks[element].artist.forEach(element => {
-    //     if (element = )
-    // })
-    $(newTdArtist).text(tracks[element].artist.val().toString());
-    $(newTdSong).text(tracks[element].track);
-    $(newTr).append(newTdArtist),$(newTr).append(newTdArtist);
-    $("table").append(newTr);
-});
+    // $.ajax({
+    //     url: 'https://accounts.spotify.com/api/token',
+    //     // url: "curl -H 'Authorization: Basic BQBKwJ4Xs80bXf9yO838A1ynmp7pg4qslJjakdxUJjcHjT0CK_ETpnpQCeX37FDbekMlqHbkrpRu2bFwZMTUB8aavgsRJ7z5sTf3oquS4fd_AiXPm0jHTIuBgJZvuH6kys_2zL9uZRazfcjwQ524VPVqHHIbUmM' -d grant_type=client_credentials https://accounts.spotify.com/api/token",
+    //     method: 'POST',
+    //     Authorization: 'Basic BQAJj36AS2up9NqEhvodx52o1C2Txy5hyQVdqJ13kje_sczEY-40inX6Xublx3qS7SMgoJecJAKKdHXfma2lCZ_1Rd3Qu_UEypHjuiyFebLdJZdH0E8XgztiMnxgU3baANVfJ_0awE7EkqMJ8sqdCr4Tcmmec2Y',
+    //     grant_type: 'client_credentials',
+    //     "Access-Control-Allow-Origin": true
+    // }).then(function(result) {
+    //     apiAccess.accessToken = result.access_token;
+    //     apiAccess.tokenType = result.token_type;
+    //     apiAccess.expiresIn = result.expires_in;
 
+    //     console.log("apiAccess.accessToken: " + apiAccess.accessToken);
+    //     console.log("apiAccess.tokenType: " + apiAccess.tokenType);
+    //     console.log("apiAccess.expiresIn: " + apiAccess.expiresIn);
+    // });
+
+    // $.ajax({})
+
+    $.ajax({
+        "Authorization": 'Bearer ' + apiAccess.accessToken,
+        url: queryUrl,
+        method: 'GET',
+        accept: 'application/json',
+        "content-type": 'application/json'
+    }).then(function(result){
+        var x = 0;
+        result.tracks.forEach(element => {
+            // if (result.tracks[element].album.artists[].length > 1) {
+                result.tracks[element].album.artists.forEach(element => {
+                    /*trackResult.artist = */ trackResult.artist.push(result.tracks[element].album.artists[element].name);
+                });
+            // }
+            // trackResult.artist = result.tracks[x].album.artists[0].name;
+            result.tracks[element].artists.forEach(element => {
+                var y = 0;
+                y = trackResult.track.length;
+                if ((y > 0) && (result.tracks[element].artists[element].name !== trackResult.track[y - 1])) {
+                    trackResult.track.push(result.tracks[element].artists[element].name);
+                }
+    
+                else {
+                    trackResult.track.push(result.tracks[element].artists[element].name);
+                }
+    
+                y = trackResult.artistLink.length;
+                if ((y > 0) && (result.tracks[element].artists[element].external_urls.spotify !== trackResult.artistLink[y - 1])) {
+                    trackResul.artistLink.push(result.tracks[element].artists[element].external_urls.spotify);
+                }
+    
+                else {
+                    trackResul.artistLink.push(result.tracks[element].artists[element].external_urls.spotify);
+                }
+            });
+            trackResult.album = result.tracks[element].album.name;
+            trackResult.trackLink = result.tracks[element].external_urls.spotify;
+            trackResult.albumLink = result.tracks[element].album.external_urls.spotify;
+    
+            tracks.push(trackResult);
+        });
+    });
+
+
+    tracks.forEach(element => {
+        var newTdArtist = $("<td>").attr("class", "artistName").attr("id", ("artistNumber" + element));
+        var newTr = $("<tr>");
+        var newTdSong = $("<td>").attr("class", "songName").attr("id", ("songNumber" + element));
+        var artistsNames = "";
+        // tracks[element].artist.forEach(element => {
+        //     if (element = )
+        // })
+        $(newTdArtist).text(tracks[element].artist.val().toString());
+        $(newTdSong).text(tracks[element].track);
+        $(newTr).append(newTdArtist),$(newTr).append(newTdArtist);
+        $("table").append(newTr);
+    });
+})
