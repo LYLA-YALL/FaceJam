@@ -17,6 +17,7 @@ body {
 	padding: 10px;
 	margin: 35px 10px 10px 10px;
 	overflow: visible !important;
+	align-content: center;
 }
 
 .container {
@@ -32,6 +33,15 @@ body {
 	opacity: .7; 
 	padding: 0 50px 10px 50px;
 	margin: 0 -50px -40px 100px;
+}
+
+#accurate-yes, #accurate-no {
+	margin: 0 0 20px 0;
+}
+
+#thanks {
+	color: #326f6f;
+	font-weight: bold;
 }
 
 .dropdown-menu, .dropdown-toggle{

@@ -6,8 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="assets/reset.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/fj.css">
     <title>FaceJam | Listen to Your Mood</title>
 </head>
@@ -17,8 +16,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <nav class="navbar fixed-top navbar-expand-md navbar-light justify-content-between">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                        aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
@@ -32,8 +30,7 @@
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">Contributors</a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contributors</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="https://github.com/mahramus">Anthony Mahramus</a>
                                     <a class="dropdown-item" href="https://github.com/lsplaver">Lawrence Splaver</a>
@@ -111,7 +108,11 @@
                     <div id="on-photo-upload-correct">
                         <h2>Success!</h2>
                         <p>Check out the music we found for you!
-                            <br> Was this correct?</p>
+                            <br> Was this accurate?</p>
+                            <div id="thanks"></div>
+                        <button type="button" class="btn btn-outline-info btn-sm accuracy" id="accurate-yes">Yes!</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm accuracy" id="accurate-no">Not really.</button>
+                        <br>
                         <div class="dropup show">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="mood-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">How do you really feel?</a>
                             <div class="dropdown-menu" aria-labelledby="mood-dropdown">
@@ -121,7 +122,7 @@
                                 <p class="dropdown-item call-spotify" id="anger">Angry</p>
                                 <p class="dropdown-item call-spotify" id="surprise">Surprised</p>
                                 <p class="dropdown-item call-spotify" id="fear">Afraid</a>
-                                <p class="dropdown-item call-spotify" id="disgust" href="#">Disgusted</p>
+                                    <p class="dropdown-item call-spotify" id="disgust" href="#">Disgusted</p>
                             </div>
                         </div>
                         <br> (this will be hidden until photo is uploaded, then will tell user whether photo was correctly interpreted)</p>
