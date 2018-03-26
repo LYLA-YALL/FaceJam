@@ -48,29 +48,30 @@ $("#submit-button").on("click", function () {
   
 
     // After the data comes back from the API
-    .done(function (response) {
+    .then(function (response) {
     //   // Storing an array of results in the results variable
       console.log(response);
 
-      // var results = response.data;
+      var results = response;
 
-      // console.log(results);
+      console.log(results);
 
-    //   var happiness = (response.faces.attributes.emotion.happiness) * 100;
-    //   var neutral = (response.faces.attributes.emotion.neutral) * 100;
-    //   var disgust = (response.faces.attributes.emotion.disgust) * 100;
-    //   var anger = (response.faces.attributes.emotion.anger) * 100;
-    //   var surprise = (response.faces.attributes.emotion.surprise) * 100;
-    //   var fear = (response.faces.attributes.emotion.fear) * 100;
-    //   var sadness = (response.faces.attributes.emotion.sadness) * 100;
+      var happiness = response.faces[0].attributes.emotion.happiness;
+      var neutral = response.faces[0].attributes.emotion.neutral;
+      var disgust = response.faces[0].attributes.emotion.disgust;
+      var anger = response.faces[0].attributes.emotion.anger;
+      var surprise = response.faces[0].attributes.emotion.surprise;
+      var fear = response.faces[0].attributes.emotion.fear;
+      var sadness = response.faces[0].attributes.emotion.sadness;
+    
 
-      // console.log(happiness);
-      // console.log(neutral);
-      // console.log(disgust);
-      // console.log(anger);
-      // console.log(surprise);
-      // console.log(fear);
-      // console.log(sadness);
+      console.log(happiness);
+      console.log(neutral);
+      console.log(disgust);
+      console.log(anger);
+      console.log(surprise);
+      console.log(fear);
+      console.log(sadness);
 
 
 
