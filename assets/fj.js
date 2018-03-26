@@ -1,5 +1,5 @@
 // DOM things
-//$("#on-photo-upload-correct").hide();
+$("#on-photo-upload-correct").hide();
 $("#on-photo-upload-error").hide();
 $(".results").hide();
 
