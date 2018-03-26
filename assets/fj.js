@@ -1,13 +1,33 @@
+// DOM things
+$("#on-photo-upload-correct").hide();
+$("#on-photo-upload-error").hide();
+$(".results").hide();
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyAwSQJpM8wQUVAYLmThPdPVeDFbNVkazvI",
+    authDomain: "facejam-1f0e6.firebaseapp.com",
+    databaseURL: "https://facejam-1f0e6.firebaseio.com",
+    projectId: "facejam-1f0e6",
+    storageBucket: "",
+    messagingSenderId: "174049412327"
+};
+firebase.initializeApp(config);
+
 
 var apiKey = "laayC4Q2zbJVehmHJQaShRBlXte6GOHY";
 var apiSecret = "dAJDmzmDj5f_lj93y_AoEqhgtT0WGPLI";
 var returnAttribute = "emotion";
 
 // Event listener for button element
+
 $("#submit-button").on("click", function () {
 
-  // Grab form data, in this case, the image
-  // var uploadForm = $("form[name=\"upload-form\"]")[0];
+
+
+    // Grab form data, in this case, the image
+    // var uploadForm = $("form[name=\"upload-form\"]")[0];
+
 
   // Place the grabbed image into a formData constructor to create a new FormData object
 
@@ -23,16 +43,19 @@ $("#submit-button").on("click", function () {
   formData.append("return_attributes", returnAttribute);
   formData.append("image_file", uploadedImage);
 
-  console.log(formData);
 
-  // // Alternate...
-  // var formData = new FormData();
-  // formData.append('section', 'general');
-  // formData.append('action', 'previewImg');
-  // // Attach file
-  // formData.append('image', $('input[type=file]')[0].files[0]);
 
-  // Constructing a URL to query Face++ for emotion reading
+    console.log(formData);
+
+    // // Alternate...
+    // var formData = new FormData();
+    // formData.append('section', 'general');
+    // formData.append('action', 'previewImg');
+    // // Attach file
+    // formData.append('image', $('input[type=file]')[0].files[0]);
+
+    // Constructing a URL to query Face++ for emotion reading
+
 
   var queryURL = "https://cors-anywhere.herokuapp.com/https://api-us.faceplusplus.com/facepp/v3/detect";
 
@@ -105,6 +128,7 @@ $("#submit-button").on("click", function () {
       //   }
       // }
     });
+    
 });
 
 //  .on("click") function associated with the clear button
@@ -141,7 +165,9 @@ var maxValence = "max_valence=1.0";
 var targetValence = "target_valence="
 
 //secondary values
-var seedGenre, seedArtist, seedAlbum, minAcoustic = "min_acousticness=0", maxAcoustic = "max_acousticness=1.0", minDuration, maxDuration, targetDuration, minInstrumental, maxInstrumental, targetInstrumental, maxKey, minKey, targetKey, minLive, maxLive, targetLive, minMode, maxMode, targetMode, minTime, maxTime, targetTime;
+var seedGenre, seedArtist, seedAlbum, minAcoustic = "min_acousticness=0",
+    maxAcoustic = "max_acousticness=1.0",
+    minDuration, maxDuration, targetDuration, minInstrumental, maxInstrumental, targetInstrumental, maxKey, minKey, targetKey, minLive, maxLive, targetLive, minMode, maxMode, targetMode, minTime, maxTime, targetTime;
 
 // dynamic emotion based values
 var dance, energy, loudness, tempo, valence;
@@ -151,9 +177,7 @@ var queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelime
 // danceability values
 if ((energy >= 0.67) && (valence >= 0.67)) {
     var queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
-}
-
-else {
+} else {
     var queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + /* minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + */ minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
 }
 // tempo values
@@ -170,7 +194,7 @@ else if ((sadness >= 0.67) || ((sadness <= 0.5) && (neutral <= 0.5))) {
 }
 
 // neutral tempo values
- else if (neutral > 0.50) {
+else if (neutral > 0.50) {
     tempo = 145;
     minTempo = "min_tempo=120";
     maxTempo = "max_tempo=170";
@@ -179,22 +203,16 @@ else if ((sadness >= 0.67) || ((sadness <= 0.5) && (neutral <= 0.5))) {
 // valence values
 if (happiness > (sadness + anger)) {
     valence = happiness - (sadness + anger);
-}
-
-else {
+} else {
     valence = (sadness + anger) - happiness;
 }
 
 // energy values
 if ((sadness > 0.5) || (neutral > 0.5)) {
     energy = 1.0 - (sadness + neutral);
-}
-
-else if ((sadness < 0.5) || (neutral < 0.5)) {
+} else if ((sadness < 0.5) || (neutral < 0.5)) {
     energy = 1.0 - ((sadness + neutral) - disgust);
-}
-
-else if ((anger > 0.67) || (happiness > 0.67) || (surprise > 0.67)) {
+} else if ((anger > 0.67) || (happiness > 0.67) || (surprise > 0.67)) {
     energy = 0.0 + ((anger + happiness + surprise) / 3);
     if (0.33 < disgust < 0.67) {
         energy = energy - disgust;
@@ -203,84 +221,180 @@ else if ((anger > 0.67) || (happiness > 0.67) || (surprise > 0.67)) {
     energy = energy - ((sadness + neutral) / 2);
 }
 
+
+
+// variables for grabbing data from modal
+
+// dropdown items
+// dropdown happiness
+$("#happiness").on("click", function() {
+    happiness = .9;
+    console.log(happiness);
+});
+
+// dropdown neutral
+$("#neutral").on("click", function() {
+    neutral = .9;
+    console.log(neutral);
+});
+
+// dropdown sad
+$("#sadness").on("click", function() {
+    sadness = .9;
+    console.log(sadness);
+});
+
+// dropdown angry
+$("#anger").on("click", function() {
+    anger = .9;
+    console.log(anger);
+});
+
+// dropdown surprised
+$("#surprise").on("click", function() {
+    surprise = .9;
+    console.log(surprise);
+});
+
+// dropdown afraid
+$("#fear").on("click", function() {
+    fear = .9;
+    console.log(fear);
+});
+
+// dropdown disgusted
+$("#disgust").on("click", function() {
+    disgust = .9;
+    console.log(disgust);
+});
+
+
+
+
+// Buttons asking user if mood read was accurate, keeps
+// running tally of votes
+var database = firebase.database();
+var yes;
+var no;
+
+// brings in yes count so we can add to it
+database.ref("/Yes").on("value", function(snapshot) {
+    console.log(snapshot.val());
+    yes = snapshot.val().yesCount;
+
+}, function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+});
+
+// brings in no count so we can to it
+database.ref("/No").on("value", function(snapshot) {
+    console.log(snapshot.val());
+    no = snapshot.val().noCount;
+
+}, function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+});
+
+// onclick event for voting yes, then hides buttons
+$("#accurate-yes").on("click", function() {
+    yes++;
+    $(".accuracy").hide();
+    $("#thanks").text("Thanks for your feedback!");
+    database.ref("Yes").set({
+        yesCount: yes
+    });
+});
+
+
+// onclick event for voting no, then hides buttons
+$("#accurate-no").on("click", function() {
+    no++;
+    $(".accuracy").hide();
+    $("#thanks").text("Thanks for your feedback!");
+    database.ref("No").set({
+        noCount: no
+    });
+});
+
+
+
+
+
+
+
+
+
 // variables for holding the results
 var tracks = []; // array for the track objects
 var seeds = []; // array for the seed_genre objects
 var trackObject = { // shows the structure of the output from spotify for one track and one seed_genre results
-    "tracks": [
-        {
-            "album": {
-                "album_type": "",
-                "artists": [
-                    {
-                        "external_urls": {
-                            "spotify": ""
-                        },
-                        "href": "",
-                        "id": "",
-                        "name": "",
-                        "type": "",
-                        "uri": ""
-                    }
-                ],
+    "tracks": [{
+        "album": {
+            "album_type": "",
+            "artists": [{
                 "external_urls": {
                     "spotify": ""
                 },
                 "href": "",
                 "id": "",
-                "images": [
-                    {
-                        "height": 0,
-                        "url": "",
-                        "width": 0
-                    },
-                    {
-                        "height": 0,
-                        "url": "",
-                        "width": 0
-                    },
-                    {
-                        "height": 0,
-                        "url": "",
-                        "width": 0
-                    }
-                ],
                 "name": "",
                 "type": "",
                 "uri": ""
-            },
-            "artists": [
-                {
-                    "external_urls": {
-                        "spotify": ""
-                    },
-                    "href": "",
-                    "id": "",
-                    "name": "",
-                    "type": "",
-                    "uri": ""
-                }
-            ],
-            "disc_number": 0,
-            "duration_ms": 0,
-            "explicit": false,
-            "external_ids": {
-                "isrc": ""
-            },
+            }],
             "external_urls": {
                 "spotify": ""
             },
             "href": "",
             "id": "",
-            "is_playable": false,
+            "images": [{
+                    "height": 0,
+                    "url": "",
+                    "width": 0
+                },
+                {
+                    "height": 0,
+                    "url": "",
+                    "width": 0
+                },
+                {
+                    "height": 0,
+                    "url": "",
+                    "width": 0
+                }
+            ],
             "name": "",
-            "popularity": 0,
-            "preview_url": "",
-            "track_number": 0,
             "type": "",
             "uri": ""
-        }
-    ],
+        },
+        "artists": [{
+            "external_urls": {
+                "spotify": ""
+            },
+            "href": "",
+            "id": "",
+            "name": "",
+            "type": "",
+            "uri": ""
+        }],
+        "disc_number": 0,
+        "duration_ms": 0,
+        "explicit": false,
+        "external_ids": {
+            "isrc": ""
+        },
+        "external_urls": {
+            "spotify": ""
+        },
+        "href": "",
+        "id": "",
+        "is_playable": false,
+        "name": "",
+        "popularity": 0,
+        "preview_url": "",
+        "track_number": 0,
+        "type": "",
+        "uri": ""
+    }],
     "seeds": [ //seed_genre
         {
             "initialPoolSize": 0,
@@ -308,13 +422,14 @@ $.ajax({
     method: 'GET',
     accept: 'application/json',
     "content-type": 'application/json'
-}).then(function(result){
+}).then(function(result) {
     var x = 0;
     result.tracks.forEach(element => {
         // if (result.tracks[element].album.artists[].length > 1) {
-            result.tracks[element].album.artists.forEach(element => {
-                /*trackResult.artist = */ trackResult.artist.push(result.tracks[element].album.artists[element].name);
-            });
+        result.tracks[element].album.artists.forEach(element => {
+            /*trackResult.artist = */
+            trackResult.artist.push(result.tracks[element].album.artists[element].name);
+        });
         // }
         // trackResult.artist = result.tracks[x].album.artists[0].name;
         result.tracks[element].artists.forEach(element => {
@@ -322,18 +437,14 @@ $.ajax({
             y = trackResult.track.length;
             if ((y > 0) && (result.tracks[element].artists[element].name !== trackResult.track[y - 1])) {
                 trackResult.track.push(result.tracks[element].artists[element].name);
-            }
-
-            else {
+            } else {
                 trackResult.track.push(result.tracks[element].artists[element].name);
             }
 
             y = trackResult.artistLink.length;
             if ((y > 0) && (result.tracks[element].artists[element].external_urls.spotify !== trackResult.artistLink[y - 1])) {
                 trackResul.artistLink.push(result.tracks[element].artists[element].external_urls.spotify);
-            }
-
-            else {
+            } else {
                 trackResul.artistLink.push(result.tracks[element].artists[element].external_urls.spotify);
             }
         });
@@ -355,7 +466,6 @@ tracks.forEach(element => {
     // })
     $(newTdArtist).text(tracks[element].artist.val().toString());
     $(newTdSong).text(tracks[element].track);
-    $(newTr).append(newTdArtist),$(newTr).append(newTdArtist);
+    $(newTr).append(newTdArtist), $(newTr).append(newTdArtist);
     $("table").append(newTr);
 })
-
