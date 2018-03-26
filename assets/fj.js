@@ -400,8 +400,7 @@ $(document).ready(function() {
     // });    
 
     // Retrieve an access token.
-    spotifyApi.clientCredentialsGrant()
-      .then(function(data) {
+    spotifyApi.clientCredentialsGrant().then(function(data) {
         console.log('The access token expires in ' + data.body['expires_in']);
         console.log('The access token is ' + data.body['access_token']);
     
