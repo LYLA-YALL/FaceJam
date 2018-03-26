@@ -359,14 +359,14 @@ $(document).ready(function() {
     //from spotifies web-api-auth-examples github
     // var request = require('request'); // "Request" library
 
-    var SpotifyWebApi = require('spotify-web-api-node');
+    var SpotifyWebApi = require('spotify-web-api-node')//;
 
-    var client_id = 'CLIENT_ID'; // Your client id
-    var client_secret = 'CLIENT_SECRET'; // Your secret
+    var client_id = 'f9193ba8699b4d488cf4ad4359844b04';
+    var client_secret = 'e4804c0849cf403991e3cda12386b26b';
 
     var spotifyApi = new SpotifyWebApi({
-        client_id: 'f9193ba8699b4d488cf4ad4359844b04',
-        client_secret: 'e4804c0849cf403991e3cda12386b26b'
+        client_id: 'CLIENT_ID', // Your client id
+        client_secret: 'CLIENT_SECRET' // Your secret
     });
     
     // // your application requests authorization
@@ -400,7 +400,8 @@ $(document).ready(function() {
     // });    
 
     // Retrieve an access token.
-    spotifyApi.clientCredentialsGrant().then(function(data) {
+    spotifyApi.clientCredentialsGrant()
+    .then(function(data) {
         console.log('The access token expires in ' + data.body['expires_in']);
         console.log('The access token is ' + data.body['access_token']);
     
