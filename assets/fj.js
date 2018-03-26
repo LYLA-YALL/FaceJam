@@ -15,26 +15,35 @@ var config = {
 firebase.initializeApp(config);
 
 
-var apiKey = "api_key=laayC4Q2zbJVehmHJQaShRBlXte6GOHY&";
-var apiSecret = "api_secret=dAJDmzmDj5f_lj93y_AoEqhgtT0WGPLI&";
-var returnAttribute = "return_attributes=emotion";
+var apiKey = "laayC4Q2zbJVehmHJQaShRBlXte6GOHY";
+var apiSecret = "dAJDmzmDj5f_lj93y_AoEqhgtT0WGPLI";
+var returnAttribute = "emotion";
 
 // Event listener for button element
-$(".form-control-file").on("change", function() {
+
+$("#submit-button").on("click", function () {
+
+
 
     // Grab form data, in this case, the image
     // var uploadForm = $("form[name=\"upload-form\"]")[0];
 
-    // Place the grabbed image into a formData constructor to create a new FormData object
-    formData = new FormData();
 
-    var uploadedImage = $(".form-control-file")[0].files[0];
-    console.log($(".form-control-file")[0].files[0]);
+  // Place the grabbed image into a formData constructor to create a new FormData object
 
-    formData.append("api_key", apiKey);
-    formData.append("api_secret", apiSecret);
-    formData.append("return_attribute", returnAttribute);
-    formData.append("image_file", uploadedImage);
+
+  formData = new FormData();
+
+
+  var uploadedImage = $("#photo-submit")[0].files[0];
+  console.log(uploadedImage);
+
+  formData.append("api_key", apiKey);
+  formData.append("api_secret", apiSecret);
+  formData.append("return_attributes", returnAttribute);
+  formData.append("image_file", uploadedImage);
+
+
 
     console.log(formData);
 
@@ -47,54 +56,84 @@ $(".form-control-file").on("change", function() {
 
     // Constructing a URL to query Face++ for emotion reading
 
-    var queryURL = "https://api-us.faceplusplus.com/facepp/v3/detect";
 
-    // Performing our AJAX POST request
-    $.ajax({
-            url: queryURL,
-            method: "POST",
-            processData: false,
-            contentType: "multipart/form-data",
-            data: formData
-        })
-        // After the data comes back from the API
-        .then(function(response) {
-            // Storing an array of results in the results variable
-            var results = response.data;
+  var queryURL = "https://cors-anywhere.herokuapp.com/https://api-us.faceplusplus.com/facepp/v3/detect";
 
-            var sadness = (response.faces.attributes.emotion.sadness) * 100;
+  // Performing our AJAX POST request
+  $.ajax({
+    url: queryURL,
+    method: "POST",
+    processData: false,
+    contentType: false,
+    data: formData
+    })
 
-            // Looping over every result item
-            for (var i = 0; i < results.length; i++) {
+  
 
-                // Only taking action if the photo has an appropriate rating
-                if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-                    // Creating a div with the class "item"
-                    var gifDiv = $("<div class='item'>");
+    // After the data comes back from the API
+    .done(function (response) {
+    //   // Storing an array of results in the results variable
+      console.log(response);
 
-                    // Storing the result item's rating
-                    var rating = results[i].rating;
+      // var results = response.data;
 
-                    // Creating a paragraph tag with the result item's rating
-                    var p = $("<p>").text("Rating: " + rating);
+      // console.log(results);
 
-                    // Creating an image tag
-                    var personImage = $("<img>");
+    //   var happiness = (response.faces.attributes.emotion.happiness) * 100;
+    //   var neutral = (response.faces.attributes.emotion.neutral) * 100;
+    //   var disgust = (response.faces.attributes.emotion.disgust) * 100;
+    //   var anger = (response.faces.attributes.emotion.anger) * 100;
+    //   var surprise = (response.faces.attributes.emotion.surprise) * 100;
+    //   var fear = (response.faces.attributes.emotion.fear) * 100;
+    //   var sadness = (response.faces.attributes.emotion.sadness) * 100;
 
-                    // Giving the image tag an src attribute of a proprty pulled off the
-                    // result item
-                    personImage.attr("src", results[i].images.fixed_height.url);
+      // console.log(happiness);
+      // console.log(neutral);
+      // console.log(disgust);
+      // console.log(anger);
+      // console.log(surprise);
+      // console.log(fear);
+      // console.log(sadness);
 
-                    // Appending the paragraph and personImage we created to the "gifDiv" div we created
-                    gifDiv.append(p);
-                    gifDiv.append(personImage);
 
-                    // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
-                    $("#gifs-appear-here").prepend(gifDiv);
-                }
-            }
-        });
+
+      // Looping over every result item
+      // for (var i = 0; i < results.length; i++) {
+
+      //   // Only taking action if the photo has an appropriate rating
+      //   if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+      //     // Creating a div with the class "item"
+      //     var gifDiv = $("<div class='item'>");
+
+      //     // Storing the result item's rating
+      //     var rating = results[i].rating;
+
+      //     // Creating a paragraph tag with the result item's rating
+      //     var p = $("<p>").text("Rating: " + rating);
+
+      //     // Creating an image tag
+      //     var personImage = $("<img>");
+
+      //     // Giving the image tag an src attribute of a proprty pulled off the
+      //     // result item
+      //     personImage.attr("src", results[i].images.fixed_height.url);
+
+      //     // Appending the paragraph and personImage we created to the "gifDiv" div we created
+      //     gifDiv.append(p);
+      //     gifDiv.append(personImage);
+
+      //     // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
+      //     $("#gifs-appear-here").prepend(gifDiv);
+      //   }
+      // }
+    });
+    
 });
+
+//  .on("click") function associated with the clear button
+// $("#clear-all").on("click", clear);
+
+// Lawrence Code
 
 var urlBegin = "https://api.spotify.com/v1/recommendations?";
 var limit = "limit=20";
