@@ -91,7 +91,8 @@ $("#submit-button").on("click", function () {
                 console.log(sadness);
 
                 $("#photo-submit").val("");
-                
+
+                $("#mood-values").append("Happiness: " + happiness + "<br>" + "Neutral: " + neutral + "<br>" + "Disgust: " + disgust + "<br>" + "Anger: " + anger + "<br>" + "Surprise: " + surprise + "<br>" + "Fear: " + fear + "<br>" + "Sadness: " + sadness);
             }
 
         });
