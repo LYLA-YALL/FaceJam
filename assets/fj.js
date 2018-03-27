@@ -24,14 +24,14 @@ var returnAttribute = "emotion";
 
 $("#submit-button").on("click", function () {
 
-    var loadFile = function(event) {
-        var reader = new FileReader();
-        reader.onload = function(){
-          var output = document.getElementById('uploaded-photo-display');
-          output.src = reader.result;
-        };
-        reader.readAsDataURL(event.target.files[0]);
-      };
+    // var loadFile = function(event) {
+    //     var reader = new FileReader();
+    //     reader.onload = function(){
+    //       var output = document.getElementById('uploaded-photo-display');
+    //       output.src = reader.result;
+    //     };
+    //     reader.readAsDataURL(event.target.files[0]);
+    //   };
 
     // Place the grabbed image into a formData constructor to create a new FormData object
 
