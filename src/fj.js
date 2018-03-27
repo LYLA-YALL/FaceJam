@@ -1,86 +1,141 @@
+// DOM things
+$("#on-photo-upload-correct").hide();
+$("#on-photo-upload-error").hide();
+$(".results").hide();
 
-var apiKey = "api_key=laayC4Q2zbJVehmHJQaShRBlXte6GOHY&";
-var apiSecret = "api_secret=dAJDmzmDj5f_lj93y_AoEqhgtT0WGPLI&";
-var returnAttribute = "return_attributes=emotion";
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyAwSQJpM8wQUVAYLmThPdPVeDFbNVkazvI",
+    authDomain: "facejam-1f0e6.firebaseapp.com",
+    databaseURL: "https://facejam-1f0e6.firebaseio.com",
+    projectId: "facejam-1f0e6",
+    storageBucket: "",
+    messagingSenderId: "174049412327"
+};
+firebase.initializeApp(config);
+
+
+var apiKey = "laayC4Q2zbJVehmHJQaShRBlXte6GOHY";
+var apiSecret = "dAJDmzmDj5f_lj93y_AoEqhgtT0WGPLI";
+var returnAttribute = "emotion";
 
 // Event listener for button element
-$(".form-control-file").on("change", function () {
 
-  // Grab form data, in this case, the image
-  // var uploadForm = $("form[name=\"upload-form\"]")[0];
+$("#submit-button").on("click", function () {
+
+
+
+    // Grab form data, in this case, the image
+    // var uploadForm = $("form[name=\"upload-form\"]")[0];
+
 
   // Place the grabbed image into a formData constructor to create a new FormData object
+
+
   formData = new FormData();
 
-  var uploadedImage = $(".form-control-file")[0].files[0];
-  console.log($(".form-control-file")[0].files[0]);
+
+  var uploadedImage = $("#photo-submit")[0].files[0];
+  console.log(uploadedImage);
 
   formData.append("api_key", apiKey);
   formData.append("api_secret", apiSecret);
-  formData.append("return_attribute", returnAttribute);
-  formData.append("image_file",uploadedImage);
+  formData.append("return_attributes", returnAttribute);
+  formData.append("image_file", uploadedImage);
 
-  console.log(formData);
 
-  // // Alternate...
-  // var formData = new FormData();
-  // formData.append('section', 'general');
-  // formData.append('action', 'previewImg');
-  // // Attach file
-  // formData.append('image', $('input[type=file]')[0].files[0]);
 
-  // Constructing a URL to query Face++ for emotion reading
+    console.log(formData);
 
-  var queryURL = "https://api-us.faceplusplus.com/facepp/v3/detect";
+    // // Alternate...
+    // var formData = new FormData();
+    // formData.append('section', 'general');
+    // formData.append('action', 'previewImg');
+    // // Attach file
+    // formData.append('image', $('input[type=file]')[0].files[0]);
+
+    // Constructing a URL to query Face++ for emotion reading
+
+//   var queryURL = "https://api-us.faceplusplus.com/facepp/v3/detect";
+
+  var queryURL = "https://cors-anywhere.herokuapp.com/https://api-us.faceplusplus.com/facepp/v3/detect";
 
   // Performing our AJAX POST request
   $.ajax({
     url: queryURL,
     method: "POST",
     processData: false,
-    contentType: "multipart/form-data",
+    contentType: false,
     data: formData
-  })
-    // After the data comes back from the API
-    .then(function (response) {
-      // Storing an array of results in the results variable
-      var results = response.data;
+    })
 
-      var sadness = (response.faces.attributes.emotion.sadness) * 100;
+  
+
+    // After the data comes back from the API
+    .done(function (response) {
+    //   // Storing an array of results in the results variable
+      console.log(response);
+
+      // var results = response.data;
+
+      // console.log(results);
+
+    //   var happiness = (response.faces.attributes.emotion.happiness) * 100;
+    //   var neutral = (response.faces.attributes.emotion.neutral) * 100;
+    //   var disgust = (response.faces.attributes.emotion.disgust) * 100;
+    //   var anger = (response.faces.attributes.emotion.anger) * 100;
+    //   var surprise = (response.faces.attributes.emotion.surprise) * 100;
+    //   var fear = (response.faces.attributes.emotion.fear) * 100;
+    //   var sadness = (response.faces.attributes.emotion.sadness) * 100;
+
+      // console.log(happiness);
+      // console.log(neutral);
+      // console.log(disgust);
+      // console.log(anger);
+      // console.log(surprise);
+      // console.log(fear);
+      // console.log(sadness);
+
+
 
       // Looping over every result item
-      for (var i = 0; i < results.length; i++) {
+      // for (var i = 0; i < results.length; i++) {
 
-        // Only taking action if the photo has an appropriate rating
-        if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-          // Creating a div with the class "item"
-          var gifDiv = $("<div class='item'>");
+      //   // Only taking action if the photo has an appropriate rating
+      //   if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+      //     // Creating a div with the class "item"
+      //     var gifDiv = $("<div class='item'>");
 
-          // Storing the result item's rating
-          var rating = results[i].rating;
+      //     // Storing the result item's rating
+      //     var rating = results[i].rating;
 
-          // Creating a paragraph tag with the result item's rating
-          var p = $("<p>").text("Rating: " + rating);
+      //     // Creating a paragraph tag with the result item's rating
+      //     var p = $("<p>").text("Rating: " + rating);
 
-          // Creating an image tag
-          var personImage = $("<img>");
+      //     // Creating an image tag
+      //     var personImage = $("<img>");
 
-          // Giving the image tag an src attribute of a proprty pulled off the
-          // result item
-          personImage.attr("src", results[i].images.fixed_height.url);
+      //     // Giving the image tag an src attribute of a proprty pulled off the
+      //     // result item
+      //     personImage.attr("src", results[i].images.fixed_height.url);
 
-          // Appending the paragraph and personImage we created to the "gifDiv" div we created
-          gifDiv.append(p);
-          gifDiv.append(personImage);
+      //     // Appending the paragraph and personImage we created to the "gifDiv" div we created
+      //     gifDiv.append(p);
+      //     gifDiv.append(personImage);
 
-          // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
-          $("#gifs-appear-here").prepend(gifDiv);
-        }
-      }
+      //     // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
+      //     $("#gifs-appear-here").prepend(gifDiv);
+      //   }
+      // }
     });
+    
 });
 
-// start spotify api
+//  .on("click") function associated with the clear button
+// $("#clear-all").on("click", clear);
+
+// Lawrence Code
+
 var urlBegin = "https://api.spotify.com/v1/recommendations?";
 var limit = "limit=20";
 var market = "market=US";
@@ -111,11 +166,23 @@ var targetValence = "target_valence=";
 
 var anger = 0, disgust = 0, fear = 0, happiness = 0, neutral = 0, sadness = 0, surprise = 0;
 //secondary values
-var seedGenre, seedArtist, seedAlbum, minAcoustic = "min_acousticness=0", maxAcoustic = "max_acousticness=1.0", minDuration, maxDuration, targetDuration, minInstrumental, maxInstrumental, targetInstrumental, maxKey, minKey, targetKey, minLive, maxLive, targetLive, minMode, maxMode, targetMode, minTime, maxTime, targetTime;
+var seedGenre, seedArtist, seedAlbum, minAcoustic = "min_acousticness=0",
+    maxAcoustic = "max_acousticness=1.0",
+    minDuration, maxDuration, targetDuration, minInstrumental, maxInstrumental, targetInstrumental, maxKey, minKey, targetKey, minLive, maxLive, targetLive, minMode, maxMode, targetMode, minTime, maxTime, targetTime;
 
 // dynamic emotion based values
 var dance, energy, loudness, tempo, valence;
 
+// var queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
+
+// danceability values
+// if ((energy >= 0.67) && (valence >= 0.67)) {
+//     queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
+// }
+// 
+// else {
+//     queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + /* minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + */ minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
+// }
 // tempo values
 // fast tempo values
 if ((surprise >= 0.67) || (happiness >= 0.67) || (fear >= 0.67) || ((disgust >= 0.50) && ((fear + anger + surprise) <= 0.5))) {
@@ -163,11 +230,111 @@ else if ((anger > 0.67) || (happiness > 0.67) || (surprise > 0.67)) {
     energy = energy - ((sadness + neutral) / 2);
 }
 
+
+
+// dropdown items
+// dropdown happiness
+$("#happiness").on("click", function() {
+    happiness = .9;
+    console.log(happiness);
+});
+
+// dropdown neutral
+$("#neutral").on("click", function() {
+    neutral = .9;
+    console.log(neutral);
+});
+
+// dropdown sad
+$("#sadness").on("click", function() {
+    sadness = .9;
+    console.log(sadness);
+});
+
+// dropdown angry
+$("#anger").on("click", function() {
+    anger = .9;
+    console.log(anger);
+});
+
+// dropdown surprised
+$("#surprise").on("click", function() {
+    surprise = .9;
+    console.log(surprise);
+});
+
+// dropdown afraid
+$("#fear").on("click", function() {
+    fear = .9;
+    console.log(fear);
+});
+
+// dropdown disgusted
+$("#disgust").on("click", function() {
+    disgust = .9;
+    console.log(disgust);
+});
+
+
+
+
+// Buttons asking user if mood read was accurate, keeps running tally of votes
+var database = firebase.database();
+var yes;
+var no;
+
+// brings in yes count so we can add to it
+database.ref("/Yes").on("value", function(snapshot) {
+    console.log(snapshot.val());
+    yes = snapshot.val().yesCount;
+
+}, function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+});
+
+// brings in no count so we can to it
+database.ref("/No").on("value", function(snapshot) {
+    console.log(snapshot.val());
+    no = snapshot.val().noCount;
+
+}, function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+});
+
+// onclick event for voting yes, then hides buttons
+$("#accurate-yes").on("click", function() {
+    yes++;
+    $(".accuracy").hide();
+    $("#thanks").text("Thanks for your feedback!");
+    database.ref("Yes").set({
+        yesCount: yes
+    });
+});
+
+
+// onclick event for voting no, then hides buttons
+$("#accurate-no").on("click", function() {
+    no++;
+    $(".accuracy").hide();
+    $("#thanks").text("Thanks for your feedback!");
+    database.ref("No").set({
+        noCount: no
+    });
+});
+
+
+
+
+
+
+
+
+
 var queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
 
 // danceability values
 if ((energy >= 0.67) && (valence >= 0.67)) {
-    queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
+   queryUrl = "https://api.spotify.com/v1/recommendations?" + limit + ampDelimeter + market + ampDelimeter + minAcoustic + ampDelimeter + maxAcoustic + ampDelimeter + targetAcoustic + ampDelimeter + minDance + ampDelimeter + maxDance + ampDelimeter + targetDance + dance + ampDelimeter + minEnergy + ampDelimeter + maxEnergy + ampDelimeter + targetEnergy + energy + ampDelimeter + minLoudness + ampDelimeter + maxLoudness + ampDelimeter + targetLoudness + loudness + ampDelimeter + minPopularity + ampDelimeter + maxPopularity + ampDelimeter + targetPopularity + ampDelimeter + minSpeech + ampDelimeter + maxSpeech + ampDelimeter + targetSpeech + ampDelimeter + minTempo + ampDelimeter + maxTempo + ampDelimeter + targetTempo + tempo + ampDelimeter + minValence + ampDelimeter + maxValence + ampDelimeter + targetValence + valence + "";
 }
 
 else {
@@ -178,80 +345,73 @@ else {
 var tracks = []; // array for the track objects
 var seeds = []; // array for the seed_genre objects
 var trackObject = { // shows the structure of the output from spotify for one track and one seed_genre results
-    "tracks": [
-        {
-            "album": {
-                "album_type": "",
-                "artists": [
-                    {
-                        "external_urls": {
-                            "spotify": ""
-                        },
-                        "href": "",
-                        "id": "",
-                        "name": "",
-                        "type": "",
-                        "uri": ""
-                    }
-                ],
+    "tracks": [{
+        "album": {
+            "album_type": "",
+            "artists": [{
                 "external_urls": {
                     "spotify": ""
                 },
                 "href": "",
                 "id": "",
-                "images": [
-                    {
-                        "height": 0,
-                        "url": "",
-                        "width": 0
-                    },
-                    {
-                        "height": 0,
-                        "url": "",
-                        "width": 0
-                    },
-                    {
-                        "height": 0,
-                        "url": "",
-                        "width": 0
-                    }
-                ],
                 "name": "",
                 "type": "",
                 "uri": ""
-            },
-            "artists": [
-                {
-                    "external_urls": {
-                        "spotify": ""
-                    },
-                    "href": "",
-                    "id": "",
-                    "name": "",
-                    "type": "",
-                    "uri": ""
-                }
-            ],
-            "disc_number": 0,
-            "duration_ms": 0,
-            "explicit": false,
-            "external_ids": {
-                "isrc": ""
-            },
+            }],
             "external_urls": {
                 "spotify": ""
             },
             "href": "",
             "id": "",
-            "is_playable": false,
+            "images": [{
+                    "height": 0,
+                    "url": "",
+                    "width": 0
+                },
+                {
+                    "height": 0,
+                    "url": "",
+                    "width": 0
+                },
+                {
+                    "height": 0,
+                    "url": "",
+                    "width": 0
+                }
+            ],
             "name": "",
-            "popularity": 0,
-            "preview_url": "",
-            "track_number": 0,
             "type": "",
             "uri": ""
-        }
-    ],
+        },
+        "artists": [{
+            "external_urls": {
+                "spotify": ""
+            },
+            "href": "",
+            "id": "",
+            "name": "",
+            "type": "",
+            "uri": ""
+        }],
+        "disc_number": 0,
+        "duration_ms": 0,
+        "explicit": false,
+        "external_ids": {
+            "isrc": ""
+        },
+        "external_urls": {
+            "spotify": ""
+        },
+        "href": "",
+        "id": "",
+        "is_playable": false,
+        "name": "",
+        "popularity": 0,
+        "preview_url": "",
+        "track_number": 0,
+        "type": "",
+        "uri": ""
+    }],
     "seeds": [ //seed_genre
         {
             "initialPoolSize": 0,
@@ -410,9 +570,9 @@ $(document).ready(function() {
     
     // Use setters to set all credentials one by one
 //    var spotifyApi = new SpotifyWebApi();
-//    spotifyApi.setAccessToken('BQBpOou-bBLYYn2LBBh_WytmjtXYkX0aCh0o_UmrI-pO3EmUEYDmK8QoIc2iDTWzKefvpQ_2Ulb7y5Pc1NKsTfZmqsJzqpCUvtity5FDnp7NydZvjxQTftWsAI6zQIATIpyLD3BPoFaq3R5E6SWdtBSTKnrREN4'); // 'myAccessToken');
+//    spotifyApi.setAccessToken(''); // 'myAccessToken');
 //    spotifyApi.setRefreshToken(); //'myRefreshToken');
-//    spotifyApi.setRedirectURI('http://localhost:8888/callback'); // 'http://www.example.com/test-callback');
+//    spotifyApi.setRedirectURI('https://lyla-yall.github.io/FaceJam/'); // 'http://www.example.com/test-callback');
 //    spotifyApi.setClientId(client_id); // 'myOwnClientId');
 //    spotifyApi.setClientSecret(client_secret); // 'someSuperSecretString');
 
@@ -437,9 +597,9 @@ $(document).ready(function() {
     
     // $.ajax({
     //     url: 'https://accounts.spotify.com/api/token',
-    //     // url: "curl -H 'Authorization: Basic BQBKwJ4Xs80bXf9yO838A1ynmp7pg4qslJjakdxUJjcHjT0CK_ETpnpQCeX37FDbekMlqHbkrpRu2bFwZMTUB8aavgsRJ7z5sTf3oquS4fd_AiXPm0jHTIuBgJZvuH6kys_2zL9uZRazfcjwQ524VPVqHHIbUmM' -d grant_type=client_credentials https://accounts.spotify.com/api/token",
+    //     // url: "curl -H 'Authorization: Basic ' -d grant_type=client_credentials https://accounts.spotify.com/api/token",
     //     method: 'POST',
-    //     Authorization: 'Basic BQAJj36AS2up9NqEhvodx52o1C2Txy5hyQVdqJ13kje_sczEY-40inX6Xublx3qS7SMgoJecJAKKdHXfma2lCZ_1Rd3Qu_UEypHjuiyFebLdJZdH0E8XgztiMnxgU3baANVfJ_0awE7EkqMJ8sqdCr4Tcmmec2Y',
+    //     Authorization: 'Basic ',
     //     grant_type: 'client_credentials',
     //     "Access-Control-Allow-Origin": true
     // }).then(function(result) {
@@ -455,7 +615,7 @@ $(document).ready(function() {
     // $.ajax({})
 
     $.ajax({
-        "Authorization": 'Bearer ' + spotifyApi.getAccessToken(), // apiAccess.accessToken,
+        "Authorization": 'Bearer ' + /*spotifyApi.getAccessToken(), */ apiAccess.accessToken,
         url: queryUrl,
         method: 'GET',
         accept: 'application/json',
@@ -517,7 +677,7 @@ $(document).ready(function() {
     spotifyApi.resetRedirectURI();
     spotifyApi.resetClientId();
     spotifyApi.resetClientSecret();
-//    spotifyApi.resetCode();
+    spotifyApi.resetCode();
 
     // Reset all credentials at the same time
     spotifyApi.resetCredentials();
