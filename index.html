@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <div id="fb-root"></div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -91,7 +92,8 @@
                 <div class="col-lg-6 search-and-upload">
                     <form name="upload-form" enctype=”multipart/form-data”>
                         <div class="form-group">
-                            <p>Show us a picture of your face and get a playlist to match your mood. <br> Be expressive!  Show us how you really feel!</p>
+                            <p>Show us a picture of your face and get a playlist to match your mood.
+                                <br> Be expressive! Show us how you really feel!</p>
                             <br>
                             <p id="disclaimer">(Don't worry, we don't keep any photos you share.)</p>
                             <label for="photo-submit">How are you feeling today?</label>
@@ -125,16 +127,14 @@
                                 <p class="dropdown-item call-spotify" id="sadness">Sad</p>
                                 <p class="dropdown-item call-spotify" id="anger">Angry</p>
                                 <p class="dropdown-item call-spotify" id="surprise">Surprised</p>
-                                <p class="dropdown-item call-spotify" id="fear">Afraid</a>
-                                    <p class="dropdown-item call-spotify" id="disgust" href="#">Disgusted</p>
+                                <p class="dropdown-item call-spotify" id="fear">Afraid</p>
+                                <p class="dropdown-item call-spotify" id="disgust" href="#">Disgusted</p>
                             </div>
                         </div>
-                        <br> (this will be hidden until photo is uploaded, then will tell user whether photo was correctly interpreted)</p>
                     </div>
                     <div id="on-photo-upload-error">
                         <h2>Uh oh...</h2>
-                        <p>Something went wrong. Make sure the photo you've used clearly depicts a human face, is no more than 2 mb, is formatted in either .jpg or .png, and each side is between 48 and 4096 pixels.
-                            <br> (this will be hidden until photo is uploaded, then will tell user whether photo was correctly interpreted)</p>
+                        <p>Something went wrong. Make sure the photo you've used clearly depicts a human face, is no more than 2 mb, is formatted in either .jpg or .png, and each side is between 48 and 4096 pixels.</p>
                     </div>
                 </div>
                 <div class="col-lg-3">
