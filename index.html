@@ -26,7 +26,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <p class="about">FaceJam uses the Face++ and Spotify APIs to create the rich experience of listening to your mood, as interpreted by a robot!</p>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="https://github.com/LYLA-YALL/FaceJam">Project Repository on GitHub</a>
+                                    <a class="dropdown-item" href="https://github.com/LYLA-YALL/FaceJam">Repository on GitHub</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -91,6 +91,9 @@
                 <div class="col-lg-6 search-and-upload">
                     <form name="upload-form" enctype=”multipart/form-data”>
                         <div class="form-group">
+                            <p>Show us a picture of your face and get a playlist to match your mood. <br> Be expressive!  Show us how you really feel!</p>
+                            <br>
+                            <p id="disclaimer">(Don't worry, we don't keep any photos you share.)</p>
                             <label for="photo-submit">How are you feeling today?</label>
                             <input type="file" class="form-control-file" id="photo-submit">
                             <button type="button" class="btn btn-secondary" id="submit-button">Upload
@@ -108,8 +111,9 @@
                     <div id="on-photo-upload-correct">
                         <h2>Success!</h2>
                         <p>Check out the music we found for you!
-                            <br><br> Was this accurate?</p>
-                            <div id="thanks"></div>
+                            <br>
+                            <br> Was this accurate?</p>
+                        <div id="thanks"></div>
                         <button type="button" class="btn btn-outline-info btn-sm accuracy" id="accurate-yes">Yes!</button>
                         <button type="button" class="btn btn-outline-secondary btn-sm accuracy" id="accurate-no">Not really.</button>
                         <br>
@@ -154,7 +158,6 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="pick-my-own" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
