@@ -27,6 +27,9 @@
   "description": "An app that utilizes the Face Plus Plus API to read the emotion expressed in a person's face in an image, and then utilizes a music search API to find songs to match the interpreted mood.",
   "devDependencies": {
     "describe": "1.2.0",
+    "mockery": "2.1.0",
+    "should": "13.2.1",
+    "sinon": "4.4.9",
     "webpack": "4.3.0"
   },
   "homepage": "https://github.com/LYLA-YALL/FaceJam.git",
