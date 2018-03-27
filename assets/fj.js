@@ -190,8 +190,6 @@ if ((sadness > 0.5) || (neutral > 0.5)) {
 
 
 
-// variables for grabbing data from modal
-
 // dropdown items
 // dropdown happiness
 $("#happiness").on("click", function () {
@@ -238,8 +236,7 @@ $("#disgust").on("click", function () {
 
 
 
-// Buttons asking user if mood read was accurate, keeps
-// running tally of votes
+// Buttons asking user if mood read was accurate, keeps running tally of votes
 var database = firebase.database();
 var yes;
 var no;
