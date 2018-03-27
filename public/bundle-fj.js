@@ -401,24 +401,24 @@ $(document).ready(function() {
     // });    
 
     //    // Retrieve an access token.
-        spotifyApi.clientCredentialsGrant()
-        .then(function(data) {
-            console.log('The access token expires in ' + data.body['expires_in']);
-            console.log('The access token is ' + data.body['access_token']);
-        
-            // Save the access token so that it's used in future calls
-            spotifyApi.setAccessToken(data.body['access_token']);
-          }, function(err) {
-                console.log('Something went wrong when retrieving an access token', err);
-          });
+//        spotifyApi.clientCredentialsGrant()
+//        .then(function(data) {
+//            console.log('The access token expires in ' + data.body['expires_in']);
+//            console.log('The access token is ' + data.body['access_token']);
+//        
+//            // Save the access token so that it's used in future calls
+//            spotifyApi.setAccessToken(data.body['access_token']);
+//          }, function(err) {
+//                console.log('Something went wrong when retrieving an access token', err);
+//          });
     
     // Use setters to set all credentials one by one
-//    var spotifyApi = new SpotifyWebApi();
+    var spotifyApi = new SpotifyWebApi();
 //    spotifyApi.setAccessToken(); // 'myAccessToken');
 //    spotifyApi.setRefreshToken(); //'myRefreshToken');
-//    spotifyApi.setRedirectURI(); // 'http://www.example.com/test-callback');
-//    spotifyApi.setClientId(client_id); // 'myOwnClientId');
-//    spotifyApi.setClientSecret(client_secret); // 'someSuperSecretString');
+    spotifyApi.setRedirectURI('http://localhost:8888/callback'); // 'http://www.example.com/test-callback');
+    spotifyApi.setClientId(client_id); // 'myOwnClientId');
+    spotifyApi.setClientSecret(client_secret); // 'someSuperSecretString');
 
     // Set all credentials at the same time
 //    spotifyApi.setCredentials({
