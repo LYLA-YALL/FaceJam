@@ -14,6 +14,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var firebaseData = firebase.database();
 
 var apiKey = "laayC4Q2zbJVehmHJQaShRBlXte6GOHY";
 var apiSecret = "dAJDmzmDj5f_lj93y_AoEqhgtT0WGPLI";
@@ -23,112 +24,78 @@ var returnAttribute = "emotion";
 
 $("#submit-button").on("click", function () {
 
+    var loadFile = function(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+          var output = document.getElementById('uploaded-photo-display');
+          output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+      };
+
+    // Place the grabbed image into a formData constructor to create a new FormData object
 
 
-    // Grab form data, in this case, the image
-    // var uploadForm = $("form[name=\"upload-form\"]")[0];
+    formData = new FormData();
 
+    firebaseData.ref().push(formData);
 
-  // Place the grabbed image into a formData constructor to create a new FormData object
+    var uploadedImage = $("#photo-submit")[0].files[0];
+    console.log(uploadedImage);
 
+   
 
-  formData = new FormData();
-
-
-  var uploadedImage = $("#photo-submit")[0].files[0];
-  console.log(uploadedImage);
-
-  formData.append("api_key", apiKey);
-  formData.append("api_secret", apiSecret);
-  formData.append("return_attributes", returnAttribute);
-  formData.append("image_file", uploadedImage);
-
-
+    formData.append("api_key", apiKey);
+    formData.append("api_secret", apiSecret);
+    formData.append("return_attributes", returnAttribute);
+    formData.append("image_file", uploadedImage);
 
     console.log(formData);
 
-    // // Alternate...
-    // var formData = new FormData();
-    // formData.append('section', 'general');
-    // formData.append('action', 'previewImg');
-    // // Attach file
-    // formData.append('image', $('input[type=file]')[0].files[0]);
+    var queryURL = "https://cors-anywhere.herokuapp.com/https://api-us.faceplusplus.com/facepp/v3/detect";
 
-    // Constructing a URL to query Face++ for emotion reading
-
-
-  var queryURL = "https://cors-anywhere.herokuapp.com/https://api-us.faceplusplus.com/facepp/v3/detect";
-
-  // Performing our AJAX POST request
-  $.ajax({
-    url: queryURL,
-    method: "POST",
-    processData: false,
-    contentType: false,
-    data: formData
+    // Performing our AJAX POST request
+    $.ajax({
+        url: queryURL,
+        method: "POST",
+        processData: false,
+        contentType: false,
+        data: formData
     })
 
-  
+        // After the data comes back from the API
+        .then(function (response) {
+            //   // Storing an array of results in the results variable
+            console.log(response);
 
-    // After the data comes back from the API
-    .then(function (response) {
-    //   // Storing an array of results in the results variable
-      console.log(response);
+            if (response.error_message === true) {
+                $("#on-photo-upload-error").show();
 
-      var results = response;
+            } else if (response.time_used > 0) {
+                $("#on-photo-upload-correct").show();
 
-      console.log(results);
+                var happiness = response.faces[0].attributes.emotion.happiness;
+                var neutral = response.faces[0].attributes.emotion.neutral;
+                var disgust = response.faces[0].attributes.emotion.disgust;
+                var anger = response.faces[0].attributes.emotion.anger;
+                var surprise = response.faces[0].attributes.emotion.surprise;
+                var fear = response.faces[0].attributes.emotion.fear;
+                var sadness = response.faces[0].attributes.emotion.sadness;
 
-      var happiness = response.faces[0].attributes.emotion.happiness;
-      var neutral = response.faces[0].attributes.emotion.neutral;
-      var disgust = response.faces[0].attributes.emotion.disgust;
-      var anger = response.faces[0].attributes.emotion.anger;
-      var surprise = response.faces[0].attributes.emotion.surprise;
-      var fear = response.faces[0].attributes.emotion.fear;
-      var sadness = response.faces[0].attributes.emotion.sadness;
-    
+                console.log(happiness);
+                console.log(neutral);
+                console.log(disgust);
+                console.log(anger);
+                console.log(surprise);
+                console.log(fear);
+                console.log(sadness);
 
-      console.log(happiness);
-      console.log(neutral);
-      console.log(disgust);
-      console.log(anger);
-      console.log(surprise);
-      console.log(fear);
-      console.log(sadness);
+                $("#photo-submit").val("");
+                
+            }
 
+        });
 
-
-      // Looping over every result item
-      // for (var i = 0; i < results.length; i++) {
-
-      //   // Only taking action if the photo has an appropriate rating
-      //   if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-      //     // Creating a div with the class "item"
-      //     var gifDiv = $("<div class='item'>");
-
-      //     // Storing the result item's rating
-      //     var rating = results[i].rating;
-
-      //     // Creating a paragraph tag with the result item's rating
-      //     var p = $("<p>").text("Rating: " + rating);
-
-      //     // Creating an image tag
-      //     var personImage = $("<img>");
-
-      //     // Giving the image tag an src attribute of a proprty pulled off the
-      //     // result item
-      //     personImage.attr("src", results[i].images.fixed_height.url);
-
-      //     // Appending the paragraph and personImage we created to the "gifDiv" div we created
-      //     gifDiv.append(p);
-      //     gifDiv.append(personImage);
-
-      //     // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
-      //     $("#gifs-appear-here").prepend(gifDiv);
-      //   }
-      // }
-    });
-    
 });
 
 //  .on("click") function associated with the clear button
@@ -227,43 +194,43 @@ if ((sadness > 0.5) || (neutral > 0.5)) {
 
 // dropdown items
 // dropdown happiness
-$("#happiness").on("click", function() {
+$("#happiness").on("click", function () {
     happiness = .9;
     console.log(happiness);
 });
 
 // dropdown neutral
-$("#neutral").on("click", function() {
+$("#neutral").on("click", function () {
     neutral = .9;
     console.log(neutral);
 });
 
 // dropdown sad
-$("#sadness").on("click", function() {
+$("#sadness").on("click", function () {
     sadness = .9;
     console.log(sadness);
 });
 
 // dropdown angry
-$("#anger").on("click", function() {
+$("#anger").on("click", function () {
     anger = .9;
     console.log(anger);
 });
 
 // dropdown surprised
-$("#surprise").on("click", function() {
+$("#surprise").on("click", function () {
     surprise = .9;
     console.log(surprise);
 });
 
 // dropdown afraid
-$("#fear").on("click", function() {
+$("#fear").on("click", function () {
     fear = .9;
     console.log(fear);
 });
 
 // dropdown disgusted
-$("#disgust").on("click", function() {
+$("#disgust").on("click", function () {
     disgust = .9;
     console.log(disgust);
 });
@@ -278,25 +245,25 @@ var yes;
 var no;
 
 // brings in yes count so we can add to it
-database.ref("/Yes").on("value", function(snapshot) {
+database.ref("/Yes").on("value", function (snapshot) {
     console.log(snapshot.val());
     yes = snapshot.val().yesCount;
 
-}, function(errorObject) {
+}, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
 });
 
 // brings in no count so we can to it
-database.ref("/No").on("value", function(snapshot) {
+database.ref("/No").on("value", function (snapshot) {
     console.log(snapshot.val());
     no = snapshot.val().noCount;
 
-}, function(errorObject) {
+}, function (errorObject) {
     console.log("The read failed: " + errorObject.code);
 });
 
 // onclick event for voting yes, then hides buttons
-$("#accurate-yes").on("click", function() {
+$("#accurate-yes").on("click", function () {
     yes++;
     $(".accuracy").hide();
     $("#thanks").text("Thanks for your feedback!");
@@ -307,7 +274,7 @@ $("#accurate-yes").on("click", function() {
 
 
 // onclick event for voting no, then hides buttons
-$("#accurate-no").on("click", function() {
+$("#accurate-no").on("click", function () {
     no++;
     $(".accuracy").hide();
     $("#thanks").text("Thanks for your feedback!");
@@ -347,20 +314,20 @@ var trackObject = { // shows the structure of the output from spotify for one tr
             "href": "",
             "id": "",
             "images": [{
-                    "height": 0,
-                    "url": "",
-                    "width": 0
-                },
-                {
-                    "height": 0,
-                    "url": "",
-                    "width": 0
-                },
-                {
-                    "height": 0,
-                    "url": "",
-                    "width": 0
-                }
+                "height": 0,
+                "url": "",
+                "width": 0
+            },
+            {
+                "height": 0,
+                "url": "",
+                "width": 0
+            },
+            {
+                "height": 0,
+                "url": "",
+                "width": 0
+            }
             ],
             "name": "",
             "type": "",
@@ -422,7 +389,7 @@ $.ajax({
     method: 'GET',
     accept: 'application/json',
     "content-type": 'application/json'
-}).then(function(result) {
+}).then(function (result) {
     var x = 0;
     result.tracks.forEach(element => {
         // if (result.tracks[element].album.artists[].length > 1) {

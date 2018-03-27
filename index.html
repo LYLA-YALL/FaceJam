@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="assets/reset.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/fj.css">
     <title>FaceJam | Listen to Your Mood</title>
 </head>
@@ -16,21 +17,25 @@
         <div class="row">
             <div class="col-lg-12">
                 <nav class="navbar fixed-top navbar-expand-md navbar-light justify-content-between">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About this Project</a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">About this Project</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <p class="about">FaceJam uses the Face++ and Spotify APIs to create the rich experience of listening to your mood, as interpreted by a robot!</p>
+                                    <p class="about">FaceJam uses the Face++ and Spotify APIs to create the rich experience of listening to
+                                        your mood, as interpreted by a robot!</p>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="https://github.com/LYLA-YALL/FaceJam">Project Repository on GitHub</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Contributors</a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">Contributors</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="https://github.com/mahramus">Anthony Mahramus</a>
                                     <a class="dropdown-item" href="https://github.com/lsplaver">Lawrence Splaver</a>
@@ -73,14 +78,14 @@
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
 
-                        <span class="carousel-control-prev-icon" aria-hidden="true">
-                        </span>
-                        <span class="sr-only">Previous</span>
+                            <span class="carousel-control-prev-icon" aria-hidden="true">
+                            </span>
+                            <span class="sr-only">Previous</span>
                         </a>
                         <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true">
-                        </span>
-                        <span class="sr-only">Next</span>
+                            <span class="carousel-control-next-icon" aria-hidden="true">
+                            </span>
+                            <span class="sr-only">Next</span>
                         </a>
                     </div>
                 </div>
@@ -92,7 +97,7 @@
                     <form name="upload-form" enctype=”multipart/form-data”>
                         <div class="form-group">
                             <label for="photo-submit">How are you feeling today?</label>
-                            <input type="file" class="form-control-file" id="photo-submit">
+                            <input type="file" accept="image/*" class="form-control-file" id="photo-submit">
                             <button type="button" class="btn btn-secondary" id="submit-button">Upload
                             </button>
                         </div>
@@ -104,17 +109,30 @@
             <div class="row">
                 <div class="col-lg-3">
                 </div>
+                <div class="col-lg-6 uploaded-photo">
+                    <div id="uploaded-photo-display">
+                        <!--uploaded photo will display here -->
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                </div>
                 <div class="col-lg-6 search-and-upload">
                     <div id="on-photo-upload-correct">
                         <h2>Success!</h2>
                         <p>Check out the music we found for you!
-                            <br><br> Was this accurate?</p>
-                            <div id="thanks"></div>
+                            <br>
+                            <br> Was this accurate?</p>
+                        <div id="thanks"></div>
                         <button type="button" class="btn btn-outline-info btn-sm accuracy" id="accurate-yes">Yes!</button>
                         <button type="button" class="btn btn-outline-secondary btn-sm accuracy" id="accurate-no">Not really.</button>
                         <br>
                         <div class="dropup show">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="mood-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">How do you really feel?</a>
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="mood-dropdown" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">How do you really feel?</a>
                             <div class="dropdown-menu" aria-labelledby="mood-dropdown">
                                 <p class="dropdown-item call-spotify" id="happiness">Happy</p>
                                 <p class="dropdown-item call-spotify" id="neutral">Neutral</p>
@@ -122,15 +140,17 @@
                                 <p class="dropdown-item call-spotify" id="anger">Angry</p>
                                 <p class="dropdown-item call-spotify" id="surprise">Surprised</p>
                                 <p class="dropdown-item call-spotify" id="fear">Afraid</a>
-                                    <p class="dropdown-item call-spotify" id="disgust" href="#">Disgusted</p>
+                                <p class="dropdown-item call-spotify" id="disgust" href="#">Disgusted</p>
                             </div>
                         </div>
                         <br> (this will be hidden until photo is uploaded, then will tell user whether photo was correctly interpreted)</p>
                     </div>
                     <div id="on-photo-upload-error">
                         <h2>Uh oh...</h2>
-                        <p>Something went wrong. Make sure the photo you've used clearly depicts a human face, is no more than 2 mb, is formatted in either .jpg or .png, and each side is between 48 and 4096 pixels.
-                            <br> (this will be hidden until photo is uploaded, then will tell user whether photo was correctly interpreted)</p>
+                        <p>Something went wrong. Make sure the photo you've used clearly depicts a human face, is no more than
+                            2 mb, is formatted in either .jpg or .png, and each side is between 48 and 4096 pixels.
+                            <br> (this will be hidden until photo is uploaded, then will tell user whether photo was correctly
+                            interpreted)</p>
                     </div>
                 </div>
                 <div class="col-lg-3">
@@ -158,8 +178,10 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     <script src="assets/fj.js"></script>
 </body>
