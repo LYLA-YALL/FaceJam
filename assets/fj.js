@@ -104,10 +104,10 @@ var maxSpeech = "max_speechiness=0.5";
 var targetSpeech = "target_speechiness=0.33";
 var minTempo = "min_tempo=80"; // temp value for minimum tempo to search for
 var maxTempo = "max_tempo=200"; // temp value for maximum tempo to search for
-var targetTempo = "target_tempo="
+var targetTempo = "target_tempo=";
 var minValence = "min_valence=0.0";
 var maxValence = "max_valence=1.0";
-var targetValence = "target_valence="
+var targetValence = "target_valence=";
 
 var anger = 0, disgust = 0, fear = 0, happiness = 0, neutral = 0, sadness = 0, surprise = 0;
 //secondary values
@@ -262,7 +262,7 @@ var trackObject = { // shows the structure of the output from spotify for one tr
             "href": null
         }
     ]
-}
+};
 
 var trackResult = {
     "artist": [],
@@ -272,7 +272,7 @@ var trackResult = {
     "albumLink": "",
     "artistLink": []
     // "genre": ""
-}
+};
 
 // $.ajax({
 //     url: queryUrl,
@@ -359,14 +359,14 @@ $(document).ready(function() {
     //from spotifies web-api-auth-examples github
     // var request = require('request'); // "Request" library
 
-    var SpotifyWebApi = require('spotify-web-api-node')//;
+    var SpotifyWebApi = require('spotify-web-api-node');//;
 
     var client_id = 'f9193ba8699b4d488cf4ad4359844b04';
     var client_secret = 'e4804c0849cf403991e3cda12386b26b';
 
     var spotifyApi = new SpotifyWebApi({
-        client_id: 'CLIENT_ID', // Your client id
-        client_secret: 'CLIENT_SECRET' // Your secret
+        client_id: client_id, ///'CLIENT_ID', // Your client id
+        client_secret: client_secret //'CLIENT_SECRET' // Your secret
     });
     
     // // your application requests authorization
@@ -399,18 +399,45 @@ $(document).ready(function() {
     //   }
     // });    
 
-    // Retrieve an access token.
-    spotifyApi.clientCredentialsGrant()
-    .then(function(data) {
-        console.log('The access token expires in ' + data.body['expires_in']);
-        console.log('The access token is ' + data.body['access_token']);
+    //    // Retrieve an access token.
+        spotifyApi.clientCredentialsGrant()
+        .then(function(data) {
+            console.log('The access token expires in ' + data.body['expires_in']);
+            console.log('The access token is ' + data.body['access_token']);
+        
+            // Save the access token so that it's used in future calls
+            spotifyApi.setAccessToken(data.body['access_token']);
+          }, function(err) {
+                console.log('Something went wrong when retrieving an access token', err);
+          });
     
-        // Save the access token so that it's used in future calls
-        spotifyApi.setAccessToken(data.body['access_token']);
-      }, function(err) {
-            console.log('Something went wrong when retrieving an access token', err);
-      });
+    // Use setters to set all credentials one by one
+//    var spotifyApi = new SpotifyWebApi();
+//    spotifyApi.setAccessToken(); // 'myAccessToken');
+//    spotifyApi.setRefreshToken(); //'myRefreshToken');
+//    spotifyApi.setRedirectURI(); // 'http://www.example.com/test-callback');
+//    spotifyApi.setClientId(client_id); // 'myOwnClientId');
+//    spotifyApi.setClientSecret(client_secret); // 'someSuperSecretString');
 
+    // Set all credentials at the same time
+//    spotifyApi.setCredentials({
+//        'accessToken' : 'myAccessToken',
+//        'refreshToken' : 'myRefreshToken',
+//        'redirectUri' : 'http://localhost:8383/callback',
+//        'clientId ' : client_id,
+//        'clientSecret' : client_secret
+//    });
+
+    // Get the credentials one by one
+    console.log('The access token is ' + spotifyApi.getAccessToken());
+    console.log('The refresh token is ' + spotifyApi.getRefreshToken());
+    console.log('The redirectURI is ' + spotifyApi.getRedirectURI());
+    console.log('The client ID is ' + spotifyApi.getClientId());
+    console.log('The client secret is ' + spotifyApi.getClientSecret());
+    
+    // Get all credentials
+    console.log('The credentials are ' + spotifyApi.getCredentials());
+    
     // $.ajax({
     //     url: 'https://accounts.spotify.com/api/token',
     //     // url: "curl -H 'Authorization: Basic BQBKwJ4Xs80bXf9yO838A1ynmp7pg4qslJjakdxUJjcHjT0CK_ETpnpQCeX37FDbekMlqHbkrpRu2bFwZMTUB8aavgsRJ7z5sTf3oquS4fd_AiXPm0jHTIuBgJZvuH6kys_2zL9uZRazfcjwQ524VPVqHHIbUmM' -d grant_type=client_credentials https://accounts.spotify.com/api/token",
@@ -431,7 +458,7 @@ $(document).ready(function() {
     // $.ajax({})
 
     $.ajax({
-        "Authorization": 'Bearer ' + apiAccess.accessToken,
+        "Authorization": 'Bearer ' + spotifyApi.getAccessToken(), // apiAccess.accessToken,
         url: queryUrl,
         method: 'GET',
         accept: 'application/json',
@@ -458,11 +485,11 @@ $(document).ready(function() {
     
                 y = trackResult.artistLink.length;
                 if ((y > 0) && (result.tracks[element].artists[element].external_urls.spotify !== trackResult.artistLink[y - 1])) {
-                    trackResul.artistLink.push(result.tracks[element].artists[element].external_urls.spotify);
+                    trackResult.artistLink.push(result.tracks[element].artists[element].external_urls.spotify);
                 }
     
                 else {
-                    trackResul.artistLink.push(result.tracks[element].artists[element].external_urls.spotify);
+                    trackResult.artistLink.push(result.tracks[element].artists[element].external_urls.spotify);
                 }
             });
             trackResult.album = result.tracks[element].album.name;
@@ -487,4 +514,15 @@ $(document).ready(function() {
         $(newTr).append(newTdArtist),$(newTr).append(newTdArtist);
         $("table").append(newTr);
     });
-})
+    // Reset the credentials
+    spotifyApi.resetAccessToken();
+    spotifyApi.resetRefreshToken();
+    spotifyApi.resetRedirectURI();
+    spotifyApi.resetClientId();
+    spotifyApi.resetClientSecret();
+//    spotifyApi.resetCode();
+
+    // Reset all credentials at the same time
+    spotifyApi.resetCredentials();
+    
+});
