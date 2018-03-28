@@ -2,6 +2,7 @@
 $("#on-photo-upload-correct").hide();
 $("#on-photo-upload-error").hide();
 $(".results").hide();
+$("#user-image").hide();
 
 // Initialize Firebase
 var config = {
@@ -21,6 +22,21 @@ var apiSecret = "dAJDmzmDj5f_lj93y_AoEqhgtT0WGPLI";
 var returnAttribute = "emotion";
 
 // Event listener for button element
+$("#photo-submit").change(function(e) {
+
+    for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
+
+        var file = e.originalEvent.srcElement.files[i];
+
+        var img = document.createElement("img");
+        var reader = new FileReader();
+        reader.onloadend = function() {
+             img.src = reader.result;
+        }
+        reader.readAsDataURL(file);
+        $("uploaded-photo-display").append(img);
+    }
+});
 
 $("#submit-button").on("click", function () {
 
@@ -34,8 +50,8 @@ $("#submit-button").on("click", function () {
     //   };
 
     // Place the grabbed image into a formData constructor to create a new FormData object
-
-
+    $("#on-photo-upload-correct").hide();
+    $("#mood-values").empty();
     formData = new FormData();
 
     firebaseData.ref().push(formData);
@@ -92,12 +108,29 @@ $("#submit-button").on("click", function () {
 
                 $("#photo-submit").val("");
 
-                $("#mood-values").append("Happiness: " + happiness + "<br>" + "Neutral: " + neutral + "<br>" + "Disgust: " + disgust + "<br>" + "Anger: " + anger + "<br>" + "Surprise: " + surprise + "<br>" + "Fear: " + fear + "<br>" + "Sadness: " + sadness);
+                $("#mood-values").append("<h4>You're feeling:</h4><br>Happiness: " + happiness.toFixed(2) + "%<br>" + "Neutral: " + neutral.toFixed(2) + "%<br>" + "Disgust: " + disgust.toFixed(2) + "%<br>" + "Anger: " + anger.toFixed(2) + "%<br>" + "Surprise: " + surprise.toFixed(2) + "%<br>" + "Fear: " + fear.toFixed(2) + "%<br>" + "Sadness: " + sadness.toFixed(2) + "%<br>");
             }
 
         });
 
 });
+
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#user-image")
+                    .show()
+                    .attr('src', e.target.result)
+                    .width(200)
+                 //   .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
 
 //  .on("click") function associated with the clear button
 // $("#clear-all").on("click", clear);
