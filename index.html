@@ -103,81 +103,81 @@
                                     <button type="button" class="btn btn-secondary" id="submit-button">Upload
                                     </button>
                                 </div>
-                                    <br>
-                                    <div class="col-lg-6">
+                                <br>
+                                <div class="col-lg-6">
                                     <img id="user-image" src="#" alt="your image" />
                                 </div>
-                                
+                            </div>
+                        </div>
                     </form>
                     </div>
-                </div>
-                <div class="col-lg-3">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3">
-                </div>
-                <div class="col-lg-6 uploaded-photo">
-                    <div id="uploaded-photo-display" width="100" height="100" />
-                    <!--uploaded photo will display here -->
-                </div>
-            </div>
-            <div class="col-lg-3">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3">
-            </div>
-            <div class="col-lg-6 search-and-upload">
-                <div id="on-photo-upload-correct">
-                    <h2>Success!</h2>
-                    <div id="mood-values"></div>
-                    <p>Check out the music we found for you!
-                        <br>
-                        <br> Was this accurate?</p>
-                    <div id="thanks"></div>
-                    <button type="button" class="btn btn-outline-info btn-sm accuracy" id="accurate-yes">Yes!</button>
-                    <button type="button" class="btn btn-outline-secondary btn-sm accuracy" id="accurate-no">Not really.</button>
-                    <br>
-                    <div class="dropup show">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="mood-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">How do you really feel?</a>
-                        <div class="dropdown-menu" aria-labelledby="mood-dropdown">
-                            <p class="dropdown-item call-spotify" id="happiness">Happy</p>
-                            <p class="dropdown-item call-spotify" id="neutral">Neutral</p>
-                            <p class="dropdown-item call-spotify" id="sadness">Sad</p>
-                            <p class="dropdown-item call-spotify" id="anger">Angry</p>
-                            <p class="dropdown-item call-spotify" id="surprise">Surprised</p>
-                            <p class="dropdown-item call-spotify" id="fear">Afraid</p>
-                            <p class="dropdown-item call-spotify" id="disgust" href="#">Disgusted</p>
+                    <div class="col-lg-3">
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                        </div>
+                        <div class="col-lg-6 uploaded-photo">
+                            <div id="uploaded-photo-display" width="100" height="100" />
+                            <!--uploaded photo will display here -->
                         </div>
                     </div>
+                    <div class="col-lg-3">
+                    </div>
                 </div>
-                <div id="on-photo-upload-error">
-                    <h2>Uh oh...</h2>
-                    <p>Something went wrong. Make sure the photo you've used clearly depicts a human face, is no more than 2 mb, is formatted in either .jpg or .png, and each side is between 48 and 4096 pixels.</p>
+                <div class="row">
+                    <div class="col-lg-3">
+                    </div>
+                    <div class="col-lg-6 search-and-upload">
+                        <div id="on-photo-upload-correct">
+                            <h2>Success!</h2>
+                            <div id="mood-values"></div>
+                            <p>Check out the music we found for you!
+                                <br>
+                                <br> Was this accurate?</p>
+                            <div id="thanks"></div>
+                            <button type="button" class="btn btn-outline-info btn-sm accuracy" id="accurate-yes">Yes!</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm accuracy" id="accurate-no">Not really.</button>
+                            <br>
+                            <div class="dropup show">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="mood-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">How do you really feel?</a>
+                                <div class="dropdown-menu" aria-labelledby="mood-dropdown">
+                                    <p class="dropdown-item call-spotify" id="happiness">Happy</p>
+                                    <p class="dropdown-item call-spotify" id="neutral">Neutral</p>
+                                    <p class="dropdown-item call-spotify" id="sadness">Sad</p>
+                                    <p class="dropdown-item call-spotify" id="anger">Angry</p>
+                                    <p class="dropdown-item call-spotify" id="surprise">Surprised</p>
+                                    <p class="dropdown-item call-spotify" id="fear">Afraid</p>
+                                    <p class="dropdown-item call-spotify" id="disgust" href="#">Disgusted</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="on-photo-upload-error">
+                            <h2>Uh oh...</h2>
+                            <p>Something went wrong. Make sure the photo you've used clearly depicts a human face, is no more than 2 mb, is formatted in either .jpg or .png, and each side is between 48 and 4096 pixels.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-3">
+                <div class="row">
+                    <div class="col-lg-12 results">
+                        <h3>Check these out...</h3>
+                        <p>(this will fill with results for music)</p>
+                        <table>
+                            <tr>
+                                <th>Artist</th>
+                                <th>Song</th>
+                            </tr>
+                            <tr>
+                                <td class="artistName">Artist</td>
+                                <td class="songName">Song</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12 results">
-                <h3>Check these out...</h3>
-                <p>(this will fill with results for music)</p>
-                <table>
-                    <tr>
-                        <th>Artist</th>
-                        <th>Song</th>
-                    </tr>
-                    <tr>
-                        <td class="artistName">Artist</td>
-                        <td class="songName">Song</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
