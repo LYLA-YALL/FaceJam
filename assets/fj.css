@@ -5,6 +5,11 @@ body {
     background-size: cover;
 }
 
+#fjLogo, .fj-logo {
+	margin-top: 65px;
+	
+}
+
 .navbar {
     background-color: #fff;
     opacity: .9;
