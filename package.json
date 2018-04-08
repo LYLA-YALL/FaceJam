@@ -1,0 +1,27 @@
+{
+  "name": "facejam",
+  "version": "1.0.0",
+  "description": "Mood and music",
+  "main": "fj.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LYLA-YALL/FaceJam.git"
+  },
+  "keywords": [
+    "emotion",
+    "music",
+    "spotify",
+    "face",
+    "plus",
+    "plus"
+  ],
+  "author": "LYLA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LYLA-YALL/FaceJam/issues"
+  },
+  "homepage": "https://github.com/LYLA-YALL/FaceJam#readme"
+}
